@@ -21,7 +21,52 @@ and open the template in the editor.
         <p>***********************************************************************************************************************</p>
 
         <?php
-        //matriz como argumento
+        $persona1 = array("id_1", 3, 10, 5);
+        $persona2 = array("id_2", 6, 20, 14);
+        $persona3 = array("id_3", 10, 15, 30);
+        $matriz = array($persona1, $persona2, $persona3);
+        ?>
+
+        <?php
+
+        function imprimir_matriz($matriz) {
+            echo "<table border=1>";
+            echo "<caption>Tabla de Datos</caption>";
+            echo "<thead>";
+            echo "<tr>";
+            echo "<th>Persona</th>";
+            echo "<th>Reposo'</th>";
+            echo "<th>Caminando'</th>";
+            echo "<th>Corriendo'</th>";
+            echo "<th>% - Reposo</th>";
+            echo "</tr>";
+            echo "</thead>";
+
+
+            foreach ($matriz as $fila) {
+                echo "<tfoot>";
+                echo "<tr>";
+                echo"<tbody>";
+                echo "<tr>";
+
+                foreach ($fila as $columna) {
+
+                    echo "<td>$columna</td>";
+                }
+                echo "</tr>";
+            }
+            echo "</tr>";
+            echo "<td>Media'</td>";
+            echo "</tfoot>";
+            echo "</tbody>";
+            echo "</table>";
+        }
+        ?>
+
+        <?php
+        imprimir_matriz($matriz);
+        $persona_prueba = array(3, 10, 5);
+        echo array_sum($persona_prueba);
         ?>
     </body>
 </html>
