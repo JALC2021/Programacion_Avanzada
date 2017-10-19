@@ -7,66 +7,79 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>EPD3_P4</title>
+        <title></title>
     </head>
     <body>
-        <p>Cree una función PHP a la que se le pase como argumento una matriz con los tiempos de actividad física de varias
-            personas medidos mediante una pulsera inteligente. Existen tres tipos de tiempos: reposo, caminando y corriendo. Esta matriz
-            contendrá en cada fila los tiempos de una persona y en cada columna el tiempo (medido en minutos) en el que ha estado en
-            reposo, caminando y corriendo (tres columnas). La función deberá generar una página web que (haciendo uso de tablas) muestre
-            los tiempos de todas las personas, así como el porcentaje del tiempo total que supone el tiempo en el que cada persona ha estado
-            en reposo. Por último, deberá añadirse una última fila con la media de tiempo por cada tipo de tiempo (reposo, caminando y
-            corriendo) teniendo en cuenta el tiempo de todas las personas. Para comprobar el funcionamiento de la función desarrollada, cree
-            una página PHP que llame a ésta usando una matriz predefinida por usted.</p>
-        <p>***********************************************************************************************************************</p>
-
+       <table border="2">
+        <tr>
+            <th colspan="4">
+                Media de notas por alumno
+                </th>
+            </tr>
         <?php
-        $persona1 = array("id_1", 3, 10, 5);
-        $persona2 = array("id_2", 6, 20, 14);
-        $persona3 = array("id_3", 10, 15, 30);
-        $matriz = array($persona1, $persona2, $persona3);
-        ?>
-
-        <?php
-
-        function imprimir_matriz($matriz) {
-            echo "<table border=1>";
-            echo "<caption>Tabla de Datos</caption>";
-            echo "<thead>";
-            echo "<tr>";
-            echo "<th>Persona</th>";
-            echo "<th>Reposo'</th>";
-            echo "<th>Caminando'</th>";
-            echo "<th>Corriendo'</th>";
-            echo "<th>% - Reposo</th>";
-            echo "</tr>";
-            echo "</thead>";
-
-
-            foreach ($matriz as $fila) {
-                echo "<tfoot>";
+        $m = array(
+            0 => array(
+                0 => 5,
+                1 => 6,
+                2 => 7
+                
+            ),
+            1 => array(
+                0 => 4,
+                1 => 8,
+                2 => 9
+            ),
+            2 => array(
+                0 => 2,
+                1 => 4,
+                2 => 5
+            ),
+            
+        );
+        
+        function funcion($m){
+            
+            
+            for($i=0;$i<3;$i++){
+                $sum = 0;
                 echo "<tr>";
-                echo"<tbody>";
-                echo "<tr>";
-
-                foreach ($fila as $columna) {
-
-                    echo "<td>$columna</td>";
+                for($j = 0;$j<3;$j++){
+                     echo "<td>";
+                    echo $m[$i][$j];
+                    $sum +=$m[$i][$j];
+                    
+                    echo "</td>";
+                  
                 }
-                echo "</tr>";
+                echo "<td>";
+                    echo $sum/3;
+                   
+                    echo "</td>";
+                     
+            echo "</tr>";}
+                
+            echo "<tr>";
+            for($i=0;$i<3;$i++){
+                    $sumasig = 0;
+                    
+              
+                    for($j = 0;$j<3;$j++){
+                        
+                         $sumasig += $m[$j][$i];
+                    }
+                    echo "<td>";
+                     echo $sumasig/3;
+                    echo "</td>";
+                     
+    
             }
             echo "</tr>";
-            echo "<td>Media'</td>";
-            echo "</tfoot>";
-            echo "</tbody>";
-            echo "</table>";
-        }
+             
+        } 
+        
+        funcion($m);
         ?>
-
-        <?php
-        imprimir_matriz($matriz);
-        $persona_prueba = array(3, 10, 5);
-        echo array_sum($persona_prueba);
-        ?>
+       </table>
     </body>
 </html>
+
