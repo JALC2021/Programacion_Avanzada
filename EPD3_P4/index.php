@@ -19,56 +19,6 @@ and open the template in the editor.
             corriendo) teniendo en cuenta el tiempo de todas las personas. Para comprobar el funcionamiento de la función desarrollada, cree
             una página PHP que llame a ésta usando una matriz predefinida por usted.</p>
         <p>***********************************************************************************************************************</p>
-
-        <?php
-        $persona1 = array(3, 10, 5);
-        $persona2 = array(6, 20, 14);
-        $persona3 = array(10, 15, 30);
-        $matriz = array($persona1, $persona2, $persona3);
-
-
-//        $sum=array_sum($persona1);
-//        $persona1[]=$sum;
-//        foreach ($persona1 as $value) {
-//            echo $value. " ";
-//        }
-        ?>
-        <?php
-
-        function mediaTiempo($m) {
-            $maux = $m;
-
-            $aux_min = array();
-            $minutos = 0;
-
-            for ($nfil = 0; $nfil < count($m); $nfil++) {
-
-                for ($ncol_valor = 0; $ncol_valor < count($m[$nfil]); $ncol_valor++) {
-
-                    $minutos += $m[$nfil][$ncol_valor];
-                }
-                $aux_min[$nfil] = $minutos;
-
-                $minutos = 0;
-            }
-
-            for ($index = 0; $index < count($maux); $index++) {
-
-                for ($index1 = 0; $index1 < count($maux); $index1++) {
-                    echo $maux[$index][$index1] . "  ---  ";
-                }
-                echo "<br>";
-            }
-            
-
-//            foreach ($aux_min as $value) {
-//                echo $value . " ";
-//                echo "<br>";
-//            }
-//            echo "<br>";
-        }
-        ?>
-
         <?php
 
         function matrizInicial($matriz) {
@@ -76,7 +26,6 @@ and open the template in the editor.
             echo "<caption>Tabla de Datos</caption>";
             echo "<thead>";
             echo "<tr>";
-            //echo "<th>Persona</th>";
             echo "<th>Reposo'</th>";
             echo "<th>Caminando'</th>";
             echo "<th>Corriendo'</th>";
@@ -93,6 +42,7 @@ and open the template in the editor.
                     //echo"<td>$fila</td>";
                     echo "<td>$columna</td>";
                 }
+
                 echo "</tr>";
             }
             echo "</tr>";
@@ -100,10 +50,82 @@ and open the template in the editor.
             echo "</table>";
         }
         ?>
+        <?php
+
+        function porcentaje_media($m) {
+            $minutos_Fil = 0;
+            $minutos_Col = 0;
+            $porcent = 0;
+            $media = 0;
+
+
+            for ($nfil = 0; $nfil < count($m); $nfil++) {
+
+                for ($ncol_valor = 0; $ncol_valor < count($m[$nfil]); $ncol_valor++) {
+
+                    $minutos_Fil += $m[$nfil][$ncol_valor];
+                    $minutos_Col += $m[$ncol_valor][$nfil];
+                }
+                round($m[$nfil][] = $minutos_Fil, 0);
+                round($m[$nfil][] = $porcent = ($m[$nfil][0]) * 100 / $minutos_Fil, 0);
+//                round($m[$ncol_valor][] = $media = $minutos_Col / count($m[$nfil])-2, 0);
+                number_format($m[$ncol_valor][] = $media = $minutos_Col / 3);
+//                echo count($m[$nfil]);
+
+
+                $minutos_Fil = 0;
+                $minutos_Col = 0;
+                $porcent = 0;
+                $media = 0;
+            }
+
+
+            echo "<table border=1>";
+            echo "<caption>Tabla de Datos</caption>";
+            echo "<thead>";
+            echo "<tr>";
+            echo "<th>Reposo'</th>";
+            echo "<th>Caminando'</th>";
+            echo "<th>Corriendo'</th>";
+            echo "<th>Total Persona'</th>";
+            echo "<th>% Reposo</th>";
+            echo "<th>Media Total Personas'</th>";
+            echo "</tr>";
+            echo "</thead>";
+
+
+            foreach ($m as $fila) {
+//                echo "<tfoot>";
+                echo "<tr>";
+                echo"<tbody>";
+                echo "<tr>";
+
+                foreach ($fila as $columna) {
+                    //echo"<td>$fila</td>";
+                    echo "<td>$columna</td>";
+                }
+
+                echo "</tr>";
+            }
+            echo "</tr>";
+//            echo "<td>Media</td";
+//            echo "</tfoot>";
+            echo "</tbody>";
+            echo "</table>";
+        }
+        ?>
+
+        <?php
+        $p1 = array(3, 10, 5);
+        $p2 = array(8, 20, 14);
+        $p3 = array(10, 15, 30);
+        $matriz = array($p1, $p2, $p3);
+        ?>
 
         <?php
         matrizInicial($matriz);
-        mediaTiempo($matriz);
+        echo "<br/>";
+        porcentaje_media($matriz);
         ?>
 
     </body>
