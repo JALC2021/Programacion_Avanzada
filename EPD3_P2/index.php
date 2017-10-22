@@ -16,30 +16,41 @@ and open the template in the editor.
             horas en las que habrá huecos para insertar pacientes, dichas horas. Cree una función que reciba estos vectores e imprima, la
             agenda del día según el formato de ejemplo para el Dr.Galeno, el día 1 de Enero de 2016:</p>
         <p>*********************************************************************************************************************</p>
-        <?php
-        $nombres_medicos = array("Dr.Galeno", "Dr.Poyatos", "Dra.Benavides");
-        $horas_pacientes = array("9.00", "9.30", "10.00", "10.30", "11.00", "11.30", "12.00", "12.30", "13.30");
-        ?>
+
+        <h1>Citas M&eacute;dicas</h1> 
         <?php
 
-        function citas($nombres_medicos, $horas_pacientes) {
+        function citasMedicas($m, $horasDisponibles) {
 
-
-            for ($index1 = 0; $index1 < count($nombres_medicos); $index1++) {
-
-                echo $nombres_medicos[$index1] . ": Citas del día " . date("d") . " de  " . date("M") . " de " . date("Y");
-
-                for ($index3 = 0; $index3 < count($horas_pacientes); $index3++) {
-
-                    echo "<br>" . $horas_pacientes[$index3] . "h";
-                }
-                echo "<br>-------------------------------------------------------";
-                echo "<br>";
+            foreach ($m as $value) {
+                echo $value . " ";
             }
+            foreach ($horasDisponibles as $value2) {
+                echo "<br/>" . $value2 . "h";
+            }
+
+            echo "<br/>************************<br/>";
         }
-        ?>
-        <?php
-        citas($nombres_medicos, $horas_pacientes);
+
+        $m1 = array("Dr.Galeno:", 1, "Octubre", 2017);
+        $horasDisponibles1 = array(9.00, 10.00, 11.30, 12.00, 13.30);
+
+
+        $m2 = array("Dr.Vinagre:", 18, "Noviembre", 2017);
+        $horasDisponibles2 = array(9.30, 10.00, 12.00, 13.30);
+
+        $m3 = array("Dr.Nene:", 30, "Diciembre", 2017);
+        $horasDisponibles3 = array(9.00, 9.30, 10.00, 10.30, 11.00, 11.30, 12.00, 12.30, 13.00, 13.30);
+
+        $m4 = array("Dr.Ganso:", 13, "Enero", 2018);
+        $horasDisponibles4 = array(12.00, 13.30);
+
+
+
+        citasMedicas($m1, $horasDisponibles1);
+        citasMedicas($m2, $horasDisponibles2);
+        citasMedicas($m3, $horasDisponibles3);
+        citasMedicas($m4, $horasDisponibles4);
         ?>
 
     </body>
