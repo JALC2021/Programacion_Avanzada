@@ -22,27 +22,26 @@ and open the template in the editor.
 
         function citasMedicas($m, $horasDisponibles) {
 
-            foreach ($m as $value) {
-                echo $value . " ";
-            }
-            foreach ($horasDisponibles as $value2) {
-                echo "<br/>" . $value2 . "h";
+            echo $m[0] . " " . $m[1] . " " . $m[2] . "<br/>" . $m[3];
+
+            foreach ($horasDisponibles as $value) {
+                echo "<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $value . "h";
             }
 
             echo "<br/>************************<br/>";
         }
 
-        $m1 = array("Dr.Galeno:", 1, "Octubre", 2017);
+        $m1 = array("Dr.Galeno:", 2017, "Octubre", 1);
         $horasDisponibles1 = array(9.00, 10.00, 11.30, 12.00, 13.30);
 
 
-        $m2 = array("Dr.Vinagre:", 18, "Noviembre", 2017);
+        $m2 = array("Dr.Vinagre:", 2017, "Noviembre", 18);
         $horasDisponibles2 = array(9.30, 10.00, 12.00, 13.30);
 
-        $m3 = array("Dr.Nene:", 30, "Diciembre", 2017);
+        $m3 = array("Dr.Nene:", 2017, "Diciembre", 30);
         $horasDisponibles3 = array(9.00, 9.30, 10.00, 10.30, 11.00, 11.30, 12.00, 12.30, 13.00, 13.30);
 
-        $m4 = array("Dr.Ganso:", 13, "Enero", 2018);
+        $m4 = array("Dr.Ganso:", 2018, "Enero", 13);
         $horasDisponibles4 = array(12.00, 13.30);
 
 
