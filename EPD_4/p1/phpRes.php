@@ -21,8 +21,9 @@
             $contMin = 0;
             $contMax = 0;
 
-
             if ($deslizadorMin < $deslizadorMax) {
+                $contMin = 0;
+                $contMax = 0;
 
                 for ($i = 0; $i < count($sep) - 1; $i++) {
 
@@ -42,13 +43,13 @@
                     } else if ($contPAlabras > $deslizadorMax) {
 
                         echo "<font color='green'>" . $unir = $sep[$i] . "." . "</font>";
+                    } else if (($contPAlabras == $deslizadorMin) || ($contPAlabras == $deslizadorMax )) {
+                        echo "<font>" . $unir = $sep[$i] . "." . "</font>";
                     }
                 }
 
                 if ($contMin == $contMax) {
                     echo "<h3>El texto no contiene errores</h3>";
-
-                    echo $textArea;
                 } else {
                     echo "<h3>El texto contiene errores</h3>";
                 }
