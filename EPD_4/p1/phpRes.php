@@ -7,45 +7,58 @@
     </head>
     <body>
         <?php
-        $pos = 0;
-        $contPAlabras = 0;
-        $encontrado = false;
+        $textArea = $_POST['textarea'];
+        $deslizadorMin = $_POST['des1'];
+        $deslizadorMax = $_POST['des2'];
+        $enviar = $_POST['submit'];
 
-        echo "<br><br>";
-        $sep = explode('.', $_POST["textarea"]);
-        print_r($sep);
-        echo "<br><br>";
-        if ($_POST["des1"] < $_POST["des2"]) {
-            for ($i = 0; $i < count($sep); $i++) {
-                $contPAlabras = str_word_count($sep[$i]);
-                echo "<br><br>";
-                echo "<br><br>";
+        if (isset($enviar) || isset($textArea)) {
 
-                if (($contPAlabras = $_POST["des1"]) && ($contPAlabras = $_POST["des2"])) {
-                    $encontrado = TRUE;
-                } else {
-                    $encontrado = FALSE;
-                    $unir = implode('.', $sep);
-                    print_r($unir);
+            $encontrado = false;
+            $sep = explode('.', $textArea);    //recore el texto y cuando hay un (.) para e introduce la frase sin punto en un vector
+//        print_r($sep); 
+            $unir = " ";
+            $contMin = 0;
+            $contMax = 0;
+
+
+            if ($deslizadorMin < $deslizadorMax) {
+
+                for ($i = 0; $i < count($sep) - 1; $i++) {
+
+                    $contPAlabras = str_word_count($sep[$i]);   //cuento las palabras
+
+                    if ($contPAlabras == $deslizadorMin) {
+
+                        $contMin++;
+                    } elseif ($contPAlabras == $deslizadorMax) {
+
+                        $contMax++;
+                    }
+
+                    if ($contPAlabras < $deslizadorMin) {
+
+                        echo "<font color='red'>" . $unir = $sep[$i] . "." . "</font>";
+                    } else if ($contPAlabras > $deslizadorMax) {
+
+                        echo "<font color='green'>" . $unir = $sep[$i] . "." . "</font>";
+                    }
                 }
+
+                if ($contMin == $contMax) {
+                    echo "<h3>El texto no contiene errores</h3>";
+
+                    echo $textArea;
+                } else {
+                    echo "<h3>El texto contiene errores</h3>";
+                }
+            } else {
+
+                echo "error en el deslizador<br>";
             }
         } else {
-            echo "error en el deslizador<br>";
+            echo "revisar campo texto antes de enviar";
         }
-        if ($encontrado == TRUE) {
-            echo "<h3>El texto es correcto</h3>";
-            echo $_POST["textarea"];
-//            $unir = implode('.', $sep);
-//            print_r($unir);
-        } else {
-            
-        }
-
-
-        echo "<br><br>";
-        echo $_POST["des1"];
-        echo "<br><br>";
-        echo $_POST["des2"];
         ?>
     </body>
 </html>
