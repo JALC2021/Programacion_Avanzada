@@ -6,6 +6,7 @@
         <title>Epd_4_p2</title>
     </head>
     <?PHP
+
     function autocompletar($sep, $vector, $contPAlabras, $i) {
         $pos = 0;
         $sepArray = explode(" ", $sep[$i]);
@@ -90,7 +91,7 @@
                     }
                 }
             } else {
-                echo "error en el deslizador<br>";
+                echo "error en el deslizador<br />";
             }
 
             if ($encontrado == true) {

@@ -37,9 +37,16 @@ and open the template in the editor.
             de vuelo hacia otros destinos. Esta tabla mostrará los destinos ordenados de forma descendente en función del número de
             conexiones.</p>
         <p>Cree una página principal que permita el acceso a cada una de las páginas descritas anteriormente.</p>
-
-
+        <h2>Alta Aerol&iacute;nea</h2>
+        <form action =recogidaDatos name="alta">
+            Nombre: <input type="text" name="nombre"><br />
+            N&uacute;mero de Destinos: <input type="number" name="nDestinos"><br />
+            <input type="submit" name="siguiente" value="Siguiente">
+        </form>
         <?php
+        
+        
+        
         ?>
     </body>
 </html>
