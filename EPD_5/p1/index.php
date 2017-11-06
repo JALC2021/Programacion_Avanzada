@@ -38,8 +38,8 @@ and open the template in the editor.
             conexiones.</p>
         <p>Cree una página principal que permita el acceso a cada una de las páginas descritas anteriormente.</p>
         <h2>Alta Aerol&iacute;nea</h2>
-        <form method="get" action =altaAerolinea.php name="alta">
-            Nombre: <input type="text" name="nombre"><br />
+        <form method="post" action =altaAerolinea.php name="alta">
+            Nombre: <input type="text" name="nombreAerolinea"><br />
             N&uacute;mero de Destinos: <input type="number" name="nDestinos"><br />
             <input type="submit" name="siguiente" value="Siguiente">
         </form>

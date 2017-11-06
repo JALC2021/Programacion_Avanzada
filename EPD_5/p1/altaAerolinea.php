@@ -10,9 +10,62 @@ and open the template in the editor.
         <title>Epd_5_p1</title>
     </head>
     <body>
+        <?php
+        $nombreAerolinea = $_POST['nombreAerolinea'];
+        $nDestinos = $_POST = ['nombreAerolinea'];
+        $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
+        $id_aerolinea = NULL;
+        $vectorIds = array();
+        ?>
 
-        <form method="get" action ="" name="alta">
-            <select>
+        <?php
+        if (!isset($_POST['siguiente'])) {
+            if (!isset($nombreAerolinea)) {
+                $errores[] = 'Debe indicar el nombre de la erol&iacute;neaianea';
+            }
+            if (!isset($errores)) {
+
+                if (filesize("id_nombreAerolinea.txt") <= 0) {
+
+                    $id_aerolinea = 0;
+
+                    $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
+                    flock($f_id_nombreAerolinea, LOCK_EX);  //bloqueo escritura
+                    fwrite($f_id_nombreAerolinea, $id_aerolinea . ";" . $nombreAerolinea . ";" . "\n");
+                    flock($f_id_nombreAerolinea, LOCK_UN);
+                    fclose($f_id_nombreAerolineahandle);
+                } else {
+
+                    $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r');
+                    flock($f_id_nombreAerolinea, LOCK_SH);  //bloqueo lectura
+                    $leerIdAero = fgetcsv($f_id_nombreAerolinea, ";");
+                    while (!feof($f_id_nombreAerolinea)) {
+                        $leerIdAero = fgetcsv($f_id_nombreAerolinea, ";");
+                        for ($index = 0; $index < count($leerIdAero); $index++) {
+                            $vectorIds[] = $leerIdAero[$index][$index];
+                        }
+                    }
+                    echo "<br />";
+                    echo $maxIds = max($vectorIds);
+                    echo "<br />";
+                    echo $id_aerolinea = $maxIds + 1;
+
+                    flock($f_id_nombreAerolinea, LOCK_UN);
+                    fclose($f_id_nombreAerolinea);
+
+                    $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
+                    flock($f_id_nombreAerolinea, LOCK_EX);
+                    fwrite($f_id_nombreAerolinea, $id_aerolinea . ";" . $nombreAerolinea . ";" . "\n");
+                    flock($f_id_nombreAerolinea, LOCK_UN);
+                    fclose($f_id_nombreAerolinea);
+                }
+            }
+        }
+        ?>
+
+        <h2>Seleccione Destino</h2>
+        <form method="post" action ="" name="alta">
+            <select size="8" multiple>
                 <?php
                 $f = fopen("ciudades.txt", 'r');
                 if ($f) {
@@ -39,6 +92,7 @@ and open the template in the editor.
                 }
                 ?>
             </select>
+            <input type="submit" name="enviarDestino" value="Enviar">
         </form>
     </body>
 </html>
