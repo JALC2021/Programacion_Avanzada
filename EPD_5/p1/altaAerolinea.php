@@ -12,13 +12,13 @@ and open the template in the editor.
     <body>
         <?php
         $nombreAerolinea = $_POST['nombreAerolinea'];
-        $nDestinos = $_POST = ['nombreAerolinea'];
+        $nDestinos = $_POST = ['nDestinos'];
         $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
+        $LecF_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r');
+        $f = fopen("ciudades.txt", 'r');
         $id_aerolinea = NULL;
         $vectorIds = array();
-        ?>
-
-        <?php
+//
         if (!isset($_POST['siguiente'])) {
             if (!isset($nombreAerolinea)) {
                 $errores[] = 'Debe indicar el nombre de la erol&iacute;neaianea';
@@ -29,45 +29,40 @@ and open the template in the editor.
 
                     $id_aerolinea = 0;
 
-                    $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
                     flock($f_id_nombreAerolinea, LOCK_EX);  //bloqueo escritura
-                    fwrite($f_id_nombreAerolinea, $id_aerolinea . ";" . $nombreAerolinea . ";" . "\n");
-                    flock($f_id_nombreAerolinea, LOCK_UN);
-                    fclose($f_id_nombreAerolineahandle);
-                } else {
-
-                    $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r');
-                    flock($f_id_nombreAerolinea, LOCK_SH);  //bloqueo lectura
-                    $leerIdAero = fgetcsv($f_id_nombreAerolinea, ";");
-                    while (!feof($f_id_nombreAerolinea)) {
-                        $leerIdAero = fgetcsv($f_id_nombreAerolinea, ";");
-                        for ($index = 0; $index < count($leerIdAero); $index++) {
-                            $vectorIds[] = $leerIdAero[$index][$index];
-                        }
-                    }
-                    echo "<br />";
-                    echo $maxIds = max($vectorIds);
-                    echo "<br />";
-                    echo $id_aerolinea = $maxIds + 1;
-
+                    fwrite($f_id_nombreAerolinea, $id_aerolinea . ";" . $nombreAerolinea . "\n");
                     flock($f_id_nombreAerolinea, LOCK_UN);
                     fclose($f_id_nombreAerolinea);
+                } else {
+                    //lectura del fichero para comprobar id
+//                  
+                    flock($LecF_id_nombreAerolinea, LOCK_SH);  //bloqueo lectura
+                    $leerIdAero = fgetcsv($LecF_id_nombreAerolinea, 999, ";");   //lee la primera linea
 
-                    $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
+                    while (!feof($LecF_id_nombreAerolinea)) {
+                        $leerIdAero = fgetcsv($LecF_id_nombreAerolinea, 999, ";");
+                        $vectorIds[] = $leerIdAero[0];
+                    }
+
+                    $maxIds = max($vectorIds);
+                    $id_aerolinea = $maxIds + 1;
+
+                    flock($LecF_id_nombreAerolinea, LOCK_UN);
+                    fclose($LecF_id_nombreAerolinea);
+
                     flock($f_id_nombreAerolinea, LOCK_EX);
-                    fwrite($f_id_nombreAerolinea, $id_aerolinea . ";" . $nombreAerolinea . ";" . "\n");
+                    fwrite($f_id_nombreAerolinea, $id_aerolinea . ";" . $nombreAerolinea . "\n");
                     flock($f_id_nombreAerolinea, LOCK_UN);
                     fclose($f_id_nombreAerolinea);
                 }
             }
         }
         ?>
-
         <h2>Seleccione Destino</h2>
-        <form method="post" action ="" name="alta">
-            <select size="8" multiple>
+        <form method="post" action ="altaCompleta.php" name="alta">
+            <select multiple size="8" name="vectorCiudadesDestino[]">
                 <?php
-                $f = fopen("ciudades.txt", 'r');
+//                $f = fopen("ciudades.txt", 'r');
                 if ($f) {
                     flock($f, LOCK_SH);
                     $ciudades = fgetcsv($f, 999, ",");
@@ -91,7 +86,11 @@ and open the template in the editor.
                     echo "error en el fichero";
                 }
                 ?>
+
             </select>
+
+            <input type="hidden" name="id_aerolinea" value="<?php echo $id_aerolinea; ?>">
+            <input type="hidden" name="nombreAerolinea" value="<?php echo $_POST['nombreAerolinea']; ?>">
             <input type="submit" name="enviarDestino" value="Enviar">
         </form>
     </body>

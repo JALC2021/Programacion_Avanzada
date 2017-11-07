@@ -1,0 +1,11 @@
+0;Dublin;Sevilla;Barcelona
+1;Londres;Sevilla;Madrid;Amsterdam
+2;Paris;Londres;Dublin;Sevilla;Madrid;Barcelona;Amsterdam
+3;Roma;Barcelona;Dublin
+6;Amsterdam;Paris;Sevilla
+7;Roma;Paris;Londres;Dublin;Sevilla;Madrid;Barcelona;Amsterdam
+8;Londres;Dublin;Sevilla
+9;Roma;Paris;Amsterdam
+10;Sevilla;Madrid;Barcelona
+11;Londres;Sevilla
+12;Barcelona;Amsterdam
