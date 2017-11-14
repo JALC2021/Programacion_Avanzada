@@ -12,40 +12,15 @@ and open the template in the editor.
     <body>
         <?php
         $nombreAerolinea = $_POST['nombreAerolinea'];
-<<<<<<< HEAD
-        $nDestinos = $_POST = ['nDestinos'];
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
-        $LecF_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r');
-        $f = fopen("ciudades.txt", 'r');
-=======
+        $nDestinos = $_POST['nDestinos'];
         $escritura_txt_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
         $lectura_txt_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r');
         $lectura_txt_ciudades = fopen("ciudades.txt", 'r');
->>>>>>> parent of b885906... lo quiero asi
-=======
-        $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
-        $LecF_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r');
-        $f = fopen("ciudades.txt", 'r');
->>>>>>> parent of b0263d7... epd5_p1
-=======
-        $nDestinos = $_POST = ['nombreAerolinea'];
-        $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
->>>>>>> parent of fafd1cf... epd5_p1
-=======
-        $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
-        $LecF_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r');
-        $f = fopen("ciudades.txt", 'r');
->>>>>>> parent of 5768243... Revert "lo quiero asi"
         $id_aerolinea = NULL;
         $vectorIds = array();
-        ?>
-
-        <?php
+//
         if (!isset($_POST['siguiente'])) {
-            if (!isset($nombreAerolinea)) {
+            if (!isset($_POST['nombreAerolinea'])) {
                 $errores[] = 'Debe indicar el nombre de la erol&iacute;neaianea';
             }
             if (!isset($errores)) {
@@ -54,125 +29,68 @@ and open the template in the editor.
 
                     $id_aerolinea = 0;
 
-                    $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
-                    flock($f_id_nombreAerolinea, LOCK_EX);  //bloqueo escritura
-                    fwrite($f_id_nombreAerolinea, $id_aerolinea . ";" . $nombreAerolinea . ";" . "\n");
-                    flock($f_id_nombreAerolinea, LOCK_UN);
-                    fclose($f_id_nombreAerolineahandle);
+                    flock($escritura_txt_id_nombreAerolinea, LOCK_EX);  //bloqueo escritura
+                    fwrite($escritura_txt_id_nombreAerolinea, $id_aerolinea . ";" . $_POST['nombreAerolinea'] . "\n");
+                    flock($escritura_txt_id_nombreAerolinea, LOCK_UN);
+                    fclose($escritura_txt_id_nombreAerolinea);
                 } else {
+                    //lectura del fichero para comprobar id
+//                  
+                    flock($lectura_txt_id_nombreAerolinea, LOCK_SH);  //bloqueo lectura
+                    $leerIdAero = fgetcsv($lectura_txt_id_nombreAerolinea, 999, ";");   //lee la primera linea
 
-                    $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r');
-                    flock($f_id_nombreAerolinea, LOCK_SH);  //bloqueo lectura
-                    $leerIdAero = fgetcsv($f_id_nombreAerolinea, ";");
-                    while (!feof($f_id_nombreAerolinea)) {
-                        $leerIdAero = fgetcsv($f_id_nombreAerolinea, ";");
-                        for ($index = 0; $index < count($leerIdAero); $index++) {
-                            $vectorIds[] = $leerIdAero[$index][$index];
-                        }
+                    while (!feof($lectura_txt_id_nombreAerolinea)) {
+                        $vectorIds[] = $leerIdAero[0];
+                        $leerIdAero = fgetcsv($lectura_txt_id_nombreAerolinea, 999, ";");
+                        
                     }
-                    echo "<br />";
-                    echo $maxIds = max($vectorIds);
-                    echo "<br />";
-                    echo $id_aerolinea = $maxIds + 1;
 
-                    flock($f_id_nombreAerolinea, LOCK_UN);
-                    fclose($f_id_nombreAerolinea);
+                    $maxIds = max($vectorIds);
+                    $id_aerolinea = $maxIds + 1;
 
-                    $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
-                    flock($f_id_nombreAerolinea, LOCK_EX);
-                    fwrite($f_id_nombreAerolinea, $id_aerolinea . ";" . $nombreAerolinea . ";" . "\n");
-                    flock($f_id_nombreAerolinea, LOCK_UN);
-                    fclose($f_id_nombreAerolinea);
+                    flock($lectura_txt_id_nombreAerolinea, LOCK_UN);
+                    fclose($lectura_txt_id_nombreAerolinea);
+
+                    flock($escritura_txt_id_nombreAerolinea, LOCK_EX);
+                    fwrite($escritura_txt_id_nombreAerolinea, $id_aerolinea . ";" . $_POST['nombreAerolinea'] . "\n");
+                    flock($escritura_txt_id_nombreAerolinea, LOCK_UN);
+                    fclose($escritura_txt_id_nombreAerolinea);
                 }
             }
         }
         ?>
-
         <h2>Seleccione Destino</h2>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 5768243... Revert "lo quiero asi"
+        <?php
+        //leo el fichero de todas las ciudades destino y las almaceno en un vector
+        if ($lectura_txt_ciudades) {
+            flock($lectura_txt_ciudades, LOCK_SH);
+            $ciudades = fgetcsv($lectura_txt_ciudades, 999, ",");
+            flock($lectura_txt_ciudades, LOCK_UN);
+            fclose($lectura_txt_ciudades);
+        } else {
+            echo "error en el fichero";
+        }
+        ?>
+
         <form method="post" action ="altaCompleta.php" name="alta">
-            <select multiple size="8" name="vectorCiudadesDestino[]">
-                <?php
-//                $f = fopen("ciudades.txt", 'r');
-                if ($f) {
-                    flock($f, LOCK_SH);
-                    $ciudades = fgetcsv($f, 999, ",");
-                    while (!feof($f)) {
-                        $ciudades = fgetcsv($f, 999, ",");
-                        ?>
-                        <option value="Roma"><?php echo $ciudades[0] ?></option>
-                        <option value="Paris"><?php echo $ciudades[1] ?></option>
-                        <option value="Londres"><?php echo $ciudades[2] ?></option>
-                        <option value="Dublin"><?php echo $ciudades[3] ?></option>
-                        <option value="Sevilla"><?php echo $ciudades[4] ?></option>
-                        <option value="Madrid"><?php echo $ciudades[5] ?></option>
-                        <option value="Barcelona"><?php echo $ciudades[6] ?></option>
-                        <option value="Amsterdam"><?php echo $ciudades[7] ?></option>
-                        <?php
+            <!--si nDestinos = 3 por ejemplo debe mostrar 3 selec y selecionar uno de cada uno sin que se repita la ciudad para eso debemos eliminar el atributo multiple-->
+           <!--<select multiple size="8" name="vectorCiudadesDestino[]">-->   
+
+            <?php for ($i = 0; $i <= count($_POST['nombreAerolinea']); $i++) { ?>
+                <p>Destino <?php echo $i ?> </p>
+
+                <select  size="8" name="vectorCiudadesDestino[]">    
+                    <?php
+                    foreach ($ciudades as $ciudad) {
+                        ?><option value="<?php echo $ciudad; ?>"><?php echo $ciudad ?></option><?php
                     }
+                    ?>
 
-                    flock($f, LOCK_UN);
-                    fclose($f);
-                } else {
-                    echo "error en el fichero";
-                }
-                ?>
-
-            </select>
-
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> parent of b0263d7... epd5_p1
-        <form method="post" action ="altaCompleta.php" name="alta">
-            <select multiple size="8" name="vectorCiudadesDestino[]">
-=======
-        <form method="post" action ="" name="alta">
-            <select size="8" multiple>
->>>>>>> parent of fafd1cf... epd5_p1
-                <?php
-                $f = fopen("ciudades.txt", 'r');
-                if ($f) {
-                    flock($f, LOCK_SH);
-                    $ciudades = fgetcsv($f, 999, ",");
-                    while (!feof($f)) {
-                        $ciudades = fgetcsv($f, 999, ",");
-                        ?>
-                        <option value="Roma"><?php echo $ciudades[0] ?></option>
-                        <option value="Paris"><?php echo $ciudades[1] ?></option>
-                        <option value="Londres"><?php echo $ciudades[2] ?></option>
-                        <option value="Dublin"><?php echo $ciudades[3] ?></option>
-                        <option value="Sevilla"><?php echo $ciudades[4] ?></option>
-                        <option value="Madrid"><?php echo $ciudades[5] ?></option>
-                        <option value="Barcelona"><?php echo $ciudades[6] ?></option>
-                        <option value="Amsterdam"><?php echo $ciudades[7] ?></option>
-                        <?php
-                    }
-
-                    flock($f, LOCK_UN);
-                    fclose($f);
-                } else {
-                    echo "error en el fichero";
-                }
-                ?>
-            </select>
-<<<<<<< HEAD
-
->>>>>>> parent of b885906... lo quiero asi
-=======
->>>>>>> parent of 5768243... Revert "lo quiero asi"
+                </select>
+            <?php } ?>
             <input type="hidden" name="id_aerolinea" value="<?php echo $id_aerolinea; ?>">
             <input type="hidden" name="nombreAerolinea" value="<?php echo $_POST['nombreAerolinea']; ?>">
-=======
->>>>>>> parent of fafd1cf... epd5_p1
             <input type="submit" name="enviarDestino" value="Enviar">
         </form>
     </body>
 </html>
-
