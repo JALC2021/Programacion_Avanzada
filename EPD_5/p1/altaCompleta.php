@@ -20,8 +20,11 @@ and open the template in the editor.
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> parent of b0263d7... epd5_p1
+=======
+>>>>>>> parent of 5768243... Revert "lo quiero asi"
         flock($f_id_nombreAerolinea_Dest, LOCK_EX);  //bloqueo escritura
         fwrite($f_id_nombreAerolinea_Dest, $id_aerolinea . ";");
         foreach ($vecCiudDest as $ciudad) {
@@ -30,6 +33,7 @@ and open the template in the editor.
         }
         flock($f_id_nombreAerolinea_Dest, LOCK_UN);
         fclose($f_id_nombreAerolinea_Dest);
+<<<<<<< HEAD
 =======
         flock($escritura_txt_altaCompleta, LOCK_EX);  //bloqueo escritura
 
@@ -45,6 +49,8 @@ and open the template in the editor.
         flock($f_id_nombreAerolinea_Dest, LOCK_UN);
         fclose($f_id_nombreAerolinea_Dest);
 >>>>>>> parent of b0263d7... epd5_p1
+=======
+>>>>>>> parent of 5768243... Revert "lo quiero asi"
         ?>
         <h2>Aerol&iacute;neas registradas</h2>
 
@@ -52,6 +58,9 @@ and open the template in the editor.
         //Leemos las aerolineas
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 5768243... Revert "lo quiero asi"
         flock($LecF_id_nombreAerolinea, LOCK_SH);  //bloqueo lectura
         $leerIdAero = fgetcsv($LecF_id_nombreAerolinea, 999, ";");   //lee la primera linea
 
@@ -64,6 +73,7 @@ and open the template in the editor.
         <form>
 
             <input type="submit" name="enviarDestino" value="Enviar">
+<<<<<<< HEAD
 =======
         $nombreAero = array();
         flock($lectura_txt_id_nombreAerolinea, LOCK_SH);  //bloqueo lectura
@@ -109,6 +119,8 @@ and open the template in the editor.
 =======
             <input type="submit" name="enviarDestino" value="Enviar">
 >>>>>>> parent of b0263d7... epd5_p1
+=======
+>>>>>>> parent of 5768243... Revert "lo quiero asi"
         </form>
     </body>
 </html>

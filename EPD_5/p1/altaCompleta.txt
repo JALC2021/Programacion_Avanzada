@@ -1,7 +1,10 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> parent of b0263d7... epd5_p1
+=======
+>>>>>>> parent of 5768243... Revert "lo quiero asi"
 0;Dublin;Sevilla;Barcelona
 1;Londres;Sevilla;Madrid;Amsterdam
 2;Paris;Londres;Dublin;Sevilla;Madrid;Barcelona;Amsterdam
@@ -13,6 +16,7 @@
 10;Sevilla;Madrid;Barcelona
 11;Londres;Sevilla
 12;Barcelona;Amsterdam
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -34,3 +38,5 @@
 >>>>>>> parent of b885906... lo quiero asi
 =======
 >>>>>>> parent of b0263d7... epd5_p1
+=======
+>>>>>>> parent of 5768243... Revert "lo quiero asi"

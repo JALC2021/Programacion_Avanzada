@@ -1,6 +1,9 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 5768243... Revert "lo quiero asi"
 0;Vueling
 1;RyanAir
 2;Argentina Airline
@@ -12,6 +15,7 @@
 10;Air Europa
 11;Latap
 12;Easy Jet
+<<<<<<< HEAD
 =======
 
 0;Vueling
@@ -42,3 +46,5 @@
 9;American;
 10;Dubai;
 >>>>>>> parent of fafd1cf... epd5_p1
+=======
+>>>>>>> parent of 5768243... Revert "lo quiero asi"

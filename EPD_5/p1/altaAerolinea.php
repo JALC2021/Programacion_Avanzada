@@ -16,6 +16,7 @@ and open the template in the editor.
         $nDestinos = $_POST = ['nDestinos'];
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
         $LecF_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r');
         $f = fopen("ciudades.txt", 'r');
@@ -33,6 +34,11 @@ and open the template in the editor.
         $nDestinos = $_POST = ['nombreAerolinea'];
         $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
 >>>>>>> parent of fafd1cf... epd5_p1
+=======
+        $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
+        $LecF_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r');
+        $f = fopen("ciudades.txt", 'r');
+>>>>>>> parent of 5768243... Revert "lo quiero asi"
         $id_aerolinea = NULL;
         $vectorIds = array();
         ?>
@@ -86,6 +92,9 @@ and open the template in the editor.
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 5768243... Revert "lo quiero asi"
         <form method="post" action ="altaCompleta.php" name="alta">
             <select multiple size="8" name="vectorCiudadesDestino[]">
                 <?php
@@ -116,6 +125,7 @@ and open the template in the editor.
 
             </select>
 
+<<<<<<< HEAD
 =======
 
 =======
@@ -155,6 +165,8 @@ and open the template in the editor.
 <<<<<<< HEAD
 
 >>>>>>> parent of b885906... lo quiero asi
+=======
+>>>>>>> parent of 5768243... Revert "lo quiero asi"
             <input type="hidden" name="id_aerolinea" value="<?php echo $id_aerolinea; ?>">
             <input type="hidden" name="nombreAerolinea" value="<?php echo $_POST['nombreAerolinea']; ?>">
 =======
