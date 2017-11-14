@@ -19,10 +19,14 @@ and open the template in the editor.
         $LecF_id_nombreAerolinea= fopen("id_nombreAerolinea.txt", 'r');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of b0263d7... epd5_p1
         flock($f_id_nombreAerolinea_Dest, LOCK_EX);  //bloqueo escritura
         fwrite($f_id_nombreAerolinea_Dest, $id_aerolinea . ";");
         foreach ($vecCiudDest as $ciudad) {
             fputcsv($f_id_nombreAerolinea_Dest, $ciudad, ";");
+<<<<<<< HEAD
         }
         flock($f_id_nombreAerolinea_Dest, LOCK_UN);
         fclose($f_id_nombreAerolinea_Dest);
@@ -36,11 +40,17 @@ and open the template in the editor.
         flock($escritura_txt_altaCompleta, LOCK_UN);
         fclose($escritura_txt_altaCompleta);
 >>>>>>> parent of b885906... lo quiero asi
+=======
+        }
+        flock($f_id_nombreAerolinea_Dest, LOCK_UN);
+        fclose($f_id_nombreAerolinea_Dest);
+>>>>>>> parent of b0263d7... epd5_p1
         ?>
         <h2>Aerol&iacute;neas registradas</h2>
 
         <?php
         //Leemos las aerolineas
+<<<<<<< HEAD
 <<<<<<< HEAD
         flock($LecF_id_nombreAerolinea, LOCK_SH);  //bloqueo lectura
         $leerIdAero = fgetcsv($LecF_id_nombreAerolinea, 999, ";");   //lee la primera linea
@@ -69,18 +79,20 @@ and open the template in the editor.
         $leerDest = fgetcsv($lectura_txt_altaCompleta, 999, ";");   //lee la primera linea
         while (!feof($lectura_txt_altaCompleta)) {
             $leerDest = fgetcsv($lectura_txt_altaCompleta, 999, ";");
+=======
+        flock($LecF_id_nombreAerolinea, LOCK_SH);  //bloqueo lectura
+        $leerIdAero = fgetcsv($LecF_id_nombreAerolinea, 999, ";");   //lee la primera linea
+>>>>>>> parent of b0263d7... epd5_p1
 
-//                $nombreDest[] = $leerDest[1];
-            echo $nombreDest[] = $leerDest[0] . "<->" . $leerDest[1] . "<br />";
+        while (!feof($LecF_id_nombreAerolinea)) {
+            $leerNomAero = fgetcsv($LecF_id_nombreAerolinea, 999, ";");
+            echo "<h4>$leerNomAero[1]</h4>";
         }
-        //tenemos que mostrar en la web el nombre de las aerolineas. y los destinos de cada aerolinea en un radio boton 
-        //imprimo las aerolineas y sus destinos
-        for ($ind = 0; $ind < count($nombreAero); $ind++) {
-//                echo "<article>";
-//                echo "<h4>" . $nombreAero[$ind] . "</h4>";
+        ?>
 
-            for ($inde = 0; $inde < count($nombreDest); $inde++) {
+        <form>
 
+<<<<<<< HEAD
                 if ($nombreAero[0] == $nombreDest[0]) {
                     echo "-->" . $nombreDest[$inde];
                 }
@@ -94,6 +106,9 @@ and open the template in the editor.
             Seleccione Origen y pulse: <input type="submit" name="enviarDestino" value="Enviar">
             
 >>>>>>> parent of b885906... lo quiero asi
+=======
+            <input type="submit" name="enviarDestino" value="Enviar">
+>>>>>>> parent of b0263d7... epd5_p1
         </form>
     </body>
 </html>

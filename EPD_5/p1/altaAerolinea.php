@@ -14,6 +14,7 @@ and open the template in the editor.
         $nombreAerolinea = $_POST['nombreAerolinea'];
         $nDestinos = $_POST = ['nDestinos'];
 <<<<<<< HEAD
+<<<<<<< HEAD
         $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
         $LecF_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r');
         $f = fopen("ciudades.txt", 'r');
@@ -22,6 +23,11 @@ and open the template in the editor.
         $lectura_txt_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r');
         $lectura_txt_ciudades = fopen("ciudades.txt", 'r');
 >>>>>>> parent of b885906... lo quiero asi
+=======
+        $f_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
+        $LecF_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r');
+        $f = fopen("ciudades.txt", 'r');
+>>>>>>> parent of b0263d7... epd5_p1
         $id_aerolinea = NULL;
         $vectorIds = array();
 //
@@ -66,6 +72,7 @@ and open the template in the editor.
         ?>
         <h2>Seleccione Destino</h2>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <form method="post" action ="altaCompleta.php" name="alta">
             <select multiple size="8" name="vectorCiudadesDestino[]">
                 <?php
@@ -98,18 +105,17 @@ and open the template in the editor.
 
 =======
 
+=======
+>>>>>>> parent of b0263d7... epd5_p1
         <form method="post" action ="altaCompleta.php" name="alta">
-            <!-- si nDestinos = 3 por ejemplo debe mostrar 3 selec y selecionar uno de cada uno sin que se repita la ciudad para eso debemos eliminar el atributo multiple-->
-            <select multiple size="8" name="vectorCiudadesDestino[]">   
-            <!--<select  size="8" name="vectorCiudadesDestino[]">-->    
+            <select multiple size="8" name="vectorCiudadesDestino[]">
                 <?php
-//                $lectura_txt_ciudades = fopen("ciudades.txt", 'r');
-
-                if ($lectura_txt_ciudades) {
-                    flock($lectura_txt_ciudades, LOCK_SH);
-                    $ciudades = fgetcsv($lectura_txt_ciudades, 999, ",");
-                    while (!feof($lectura_txt_ciudades)) {
-                        $ciudades = fgetcsv($lectura_txt_ciudades, 999, ",");
+//                $f = fopen("ciudades.txt", 'r');
+                if ($f) {
+                    flock($f, LOCK_SH);
+                    $ciudades = fgetcsv($f, 999, ",");
+                    while (!feof($f)) {
+                        $ciudades = fgetcsv($f, 999, ",");
                         ?>
                         <option value="Roma"><?php echo $ciudades[0] ?></option>
                         <option value="Paris"><?php echo $ciudades[1] ?></option>
@@ -122,8 +128,8 @@ and open the template in the editor.
                         <?php
                     }
 
-                    flock($lectura_txt_ciudades, LOCK_UN);
-                    fclose($lectura_txt_ciudades);
+                    flock($f, LOCK_UN);
+                    fclose($f);
                 } else {
                     echo "error en el fichero";
                 }
