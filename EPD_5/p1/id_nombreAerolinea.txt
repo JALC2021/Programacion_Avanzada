@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 0;Vueling
 1;RyanAir
 2;Argentina Airline
@@ -10,10 +9,3 @@
 10;Air Europa
 11;Latap
 12;Easy Jet
-=======
-
-0;Vueling
-1;RyanAir
-2;Argentina Airline
-3;Latam Arilines
->>>>>>> parent of b885906... lo quiero asi
