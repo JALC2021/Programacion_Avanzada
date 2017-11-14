@@ -12,8 +12,7 @@ and open the template in the editor.
     <body>
         <?php
         $nombreAerolinea = $_POST['nombreAerolinea'];
-        echo $nombreAerolinea;
-        $nDestinos = $_POST['nDestinos'];
+        $nDestinos = $_POST = ['nDestinos'];
         $escritura_txt_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
         $lectura_txt_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r');
         $lectura_txt_ciudades = fopen("ciudades.txt", 'r');
@@ -60,36 +59,44 @@ and open the template in the editor.
         }
         ?>
         <h2>Seleccione Destino</h2>
-        <?php
-        //leo el fichero de todas las ciudades destino y las almaceno en un vector
-        if ($lectura_txt_ciudades) {
-            flock($lectura_txt_ciudades, LOCK_SH);
-            $ciudades = fgetcsv($lectura_txt_ciudades, 999, ",");
-            flock($lectura_txt_ciudades, LOCK_UN);
-            fclose($lectura_txt_ciudades);
-        } else {
-            echo "error en el fichero";
-        }
-        ?>
 
         <form method="post" action ="altaCompleta.php" name="alta">
-            <!--si nDestinos = 3 por ejemplo debe mostrar 3 selec y selecionar uno de cada uno sin que se repita la ciudad para eso debemos eliminar el atributo multiple-->
+            <!-- si nDestinos = 3 por ejemplo debe mostrar 3 selec y selecionar uno de cada uno sin que se repita la ciudad para eso debemos eliminar el atributo multiple-->
+            <select multiple size="8" name="vectorCiudadesDestino[]">   
+            <!--<select  size="8" name="vectorCiudadesDestino[]">-->    
+                <?php
+//                $lectura_txt_ciudades = fopen("ciudades.txt", 'r');
 
-            <?php for ($i = 0; $i < count($nDestinos); $i++) { ?>
-                <p>Destino <?php echo $i ?> </p>
-
-                <select  size="8" name="vectorCiudadesDestino[]">    
-                    <?php
-                    foreach ($ciudades as $ciudad) {
-                        ?><option value="<?php echo $ciudad; ?>"><?php echo $ciudad ?></option><?php
+                if ($lectura_txt_ciudades) {
+                    flock($lectura_txt_ciudades, LOCK_SH);
+                    $ciudades = fgetcsv($lectura_txt_ciudades, 999, ",");
+                    while (!feof($lectura_txt_ciudades)) {
+                        $ciudades = fgetcsv($lectura_txt_ciudades, 999, ",");
+                        ?>
+                        <option value="Roma"><?php echo $ciudades[0] ?></option>
+                        <option value="Paris"><?php echo $ciudades[1] ?></option>
+                        <option value="Londres"><?php echo $ciudades[2] ?></option>
+                        <option value="Dublin"><?php echo $ciudades[3] ?></option>
+                        <option value="Sevilla"><?php echo $ciudades[4] ?></option>
+                        <option value="Madrid"><?php echo $ciudades[5] ?></option>
+                        <option value="Barcelona"><?php echo $ciudades[6] ?></option>
+                        <option value="Amsterdam"><?php echo $ciudades[7] ?></option>
+                        <?php
                     }
-                    ?>
 
-                </select>
-            <?php } ?>
+                    flock($lectura_txt_ciudades, LOCK_UN);
+                    fclose($lectura_txt_ciudades);
+                } else {
+                    echo "error en el fichero";
+                }
+                ?>
+
+            </select>
+
             <input type="hidden" name="id_aerolinea" value="<?php echo $id_aerolinea; ?>">
             <input type="hidden" name="nombreAerolinea" value="<?php echo $_POST['nombreAerolinea']; ?>">
             <input type="submit" name="enviarDestino" value="Enviar">
         </form>
     </body>
 </html>
+

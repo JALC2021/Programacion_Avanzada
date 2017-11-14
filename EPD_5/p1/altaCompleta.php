@@ -20,13 +20,11 @@ and open the template in the editor.
         $lectura_txt_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r');    //modo lectura
 
         flock($escritura_txt_altaCompleta, LOCK_EX);  //bloqueo escritura
-        foreach ($vectorCiudadesDestino as $value) {
-            fwrite($escritura_txt_altaCompleta, $id_aerolinea . ";" . $value . "\n");
+
+        for ($c = 0; $c < count($vectorCiudadesDestino); $c++) {
+
+            fwrite($escritura_txt_altaCompleta, $id_aerolinea . ";" . $vectorCiudadesDestino[$c] . "\n");
         }
-//        for ($c = 0; $c < count($vectorCiudadesDestino); $c++) {
-//
-//            fwrite($escritura_txt_altaCompleta, $id_aerolinea . ";" . $vectorCiudadesDestino[$c] . "\n");
-//        }
         flock($escritura_txt_altaCompleta, LOCK_UN);
         fclose($escritura_txt_altaCompleta);
         ?>
@@ -39,39 +37,40 @@ and open the template in the editor.
         flock($lectura_txt_id_nombreAerolinea, LOCK_SH);  //bloqueo lectura
         $leerNomAero = fgetcsv($lectura_txt_id_nombreAerolinea, 999, ";");   //lee la primera linea
         while (!feof($lectura_txt_id_nombreAerolinea)) {
-            $nombreAero[0][] = $leerNomAero[0];
-            $nombreAero[1][] = $leerNomAero[1];
             $leerNomAero = fgetcsv($lectura_txt_id_nombreAerolinea, 999, ";");
+
+            echo $nombreAero[] = $leerNomAero[0] . "<->" . $leerNomAero[1] . "<br />";
         }
         //leemos las ciudades destino para cada aerolinea
         $nombreDest = array();
         flock($lectura_txt_altaCompleta, LOCK_SH);  //bloqueo lectura
         $leerDest = fgetcsv($lectura_txt_altaCompleta, 999, ";");   //lee la primera linea
         while (!feof($lectura_txt_altaCompleta)) {
-            $nombreDest[0][] = $leerDest[0];
-            $nombreDest[1][] = $leerDest[1];
             $leerDest = fgetcsv($lectura_txt_altaCompleta, 999, ";");
+
+//                $nombreDest[] = $leerDest[1];
+            echo $nombreDest[] = $leerDest[0] . "<->" . $leerDest[1] . "<br />";
         }
         //tenemos que mostrar en la web el nombre de las aerolineas. y los destinos de cada aerolinea en un radio boton 
         //imprimo las aerolineas y sus destinos
-        for ($ind = 0; $ind < count($nombreAero[0]); $ind++) {
-            echo "<article>";
-            echo "<h4>" . $nombreAero[1][$ind] . "</h4>";
+        for ($ind = 0; $ind < count($nombreAero); $ind++) {
+//                echo "<article>";
+//                echo "<h4>" . $nombreAero[$ind] . "</h4>";
 
-            for ($inde = 0; $inde < count($nombreDest[0]); $inde++) {
+            for ($inde = 0; $inde < count($nombreDest); $inde++) {
 
-                if ($nombreAero[0][$ind] == $nombreDest[0][$inde]) {    // value='" . .  "'". 
-//                    echo"<input type='radio' name='destinos'>" . $nombreDest[1][$inde] . "</input>";
+                if ($nombreAero[0] == $nombreDest[0]) {
+                    echo "-->" . $nombreDest[$inde];
                 }
-//                    
-                echo "</article>";
+//                    echo"<input type='radio' name='destinos'>" . $nombreDest[$inde];
+//                    echo "</article>";
             }
         }
         ?>
         <form method="post" action="altaVuelos.php">
             <br />
             Seleccione Origen y pulse: <input type="submit" name="enviarDestino" value="Enviar">
-
+            
         </form>
     </body>
 </html>
