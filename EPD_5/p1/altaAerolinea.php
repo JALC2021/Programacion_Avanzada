@@ -13,13 +13,8 @@ and open the template in the editor.
         <?php
         $nombreAerolinea = $_POST['nombreAerolinea'];
         $nDestinos = $_POST['nDestinos'];
-//        $escritura_txt_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');
-//        $lectura_txt_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r');
-//        $lectura_txt_ciudades = fopen("ciudades.txt", 'r');
         $id_aerolinea = NULL;
         $vectorIds = array();
-
-        $id_aerolinea = 0;
 
         if (isset($_POST['siguiente'])) {
             if ($_POST['nombreAerolinea'] == "") {
@@ -28,15 +23,11 @@ and open the template in the editor.
 
                 $lectura_txt_id_nombreAerolinea = fopen("iDnombreAerolinea.txt", 'r'); //abro lectura
 
-
-
                 if (filesize("iDnombreAerolinea.txt") <= 0) {
-
-
 
                     fclose($lectura_txt_id_nombreAerolinea);    //cierro lectura
                     $id_aerolinea = 0;
-
+                    
                     $escritura_txt_id_nombreAerolinea = fopen("iDnombreAerolinea.txt", 'a');   //abro escritura
 //                    flock($escritura_txt_id_nombreAerolinea, LOCK_EX);  //bloqueo escritura
                     fwrite($escritura_txt_id_nombreAerolinea, $id_aerolinea . ";" . $nombreAerolinea . "\n");
@@ -90,8 +81,10 @@ and open the template in the editor.
         <form method="post" action ="altaCompleta.php" name="alta">
             <!--si nDestinos = 3 por ejemplo debe mostrar 3 selec y selecionar uno de cada uno sin que se repita la ciudad para eso debemos eliminar el atributo multiple-->  
 
-            <?php echo $nDestinos;
-            for ($i = 0; $i < $nDestinos; $i++) { ?>
+            <?php
+            echo $nDestinos;
+            for ($i = 0; $i < $nDestinos; $i++) {
+                ?>
                 <p>Destino <?php echo $i ?> </p>
 
                 <select  size="8" name="vectorCiudadesDestino[]">    
