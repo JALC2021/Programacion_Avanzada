@@ -19,24 +19,20 @@ and open the template in the editor.
         $id_aerolinea = NULL;
         $vectorIds = array();
 
+        $id_aerolinea = 0;
+
         if (isset($_POST['siguiente'])) {
-            if ($_POST['nombreAerolinea'] != "") {
+            if ($_POST['nombreAerolinea'] == "") {
                 $errores[] = 'Debe indicar el nombre de la Aerol&iacute;nea';
-            }
+            } else {
 
-            if (!isset($errores)) {
-
-                echo $id_aerolinea;     //*********************
-                die("hola1");
                 $lectura_txt_id_nombreAerolinea = fopen("iDnombreAerolinea.txt", 'r'); //abro lectura
 
-                echo $id_aerolinea;     //*********************
-                die("hola2");
+
 
                 if (filesize("iDnombreAerolinea.txt") <= 0) {
 
-                    echo $id_aerolinea;     //*********************
-                    die("hola1");
+
 
                     fclose($lectura_txt_id_nombreAerolinea);    //cierro lectura
                     $id_aerolinea = 0;
@@ -47,10 +43,9 @@ and open the template in the editor.
 //                    flock($escritura_txt_id_nombreAerolinea, LOCK_UN);
                     fclose($escritura_txt_id_nombreAerolinea);  //cierro escritura
                 } else {
-                    echo $id_aerolinea;     //*********************
-                    die("hola3");
+
                     //lectura del fichero para comprobar id
-                    echo $id_aerolinea;
+
                     fclose($lectura_txt_id_nombreAerolinea);    //cierro lectura//*********************
 
                     $lectura_txt_id_nombreAerolinea = fopen("iDnombreAerolinea.txt", 'r'); //abro lectura
@@ -95,7 +90,8 @@ and open the template in the editor.
         <form method="post" action ="altaCompleta.php" name="alta">
             <!--si nDestinos = 3 por ejemplo debe mostrar 3 selec y selecionar uno de cada uno sin que se repita la ciudad para eso debemos eliminar el atributo multiple-->  
 
-            <?php for ($i = 0; $i <= count($nDestinos); $i++) { ?>
+            <?php echo $nDestinos;
+            for ($i = 0; $i < $nDestinos; $i++) { ?>
                 <p>Destino <?php echo $i ?> </p>
 
                 <select  size="8" name="vectorCiudadesDestino[]">    
@@ -104,6 +100,8 @@ and open the template in the editor.
                         ?><option value="<?php echo $ciudad; ?>"><?php echo $ciudad ?></option><?php
                     }
                     ?>
+
+
 
                 </select>
             <?php } ?>
