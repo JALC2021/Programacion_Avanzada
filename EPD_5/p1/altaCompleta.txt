@@ -3,3 +3,7 @@
 1;Sevilla
 1;Paris
 1;Barcelona
+2;Madrid
+3;Amsterdam
+3;Madrid
+3;Londres

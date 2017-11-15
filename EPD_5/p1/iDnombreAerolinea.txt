@@ -1,2 +1,4 @@
 0;Vueling
 1;RyanAir
+2;Air Europa
+3;Argentina Airline

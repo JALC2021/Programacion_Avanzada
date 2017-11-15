@@ -27,11 +27,11 @@ and open the template in the editor.
 
                     fclose($lectura_txt_id_nombreAerolinea);    //cierro lectura
                     $id_aerolinea = 0;
-                    
+
                     $escritura_txt_id_nombreAerolinea = fopen("iDnombreAerolinea.txt", 'a');   //abro escritura
-//                    flock($escritura_txt_id_nombreAerolinea, LOCK_EX);  //bloqueo escritura
+                    flock($escritura_txt_id_nombreAerolinea, LOCK_EX);  //bloqueo escritura
                     fwrite($escritura_txt_id_nombreAerolinea, $id_aerolinea . ";" . $nombreAerolinea . "\n");
-//                    flock($escritura_txt_id_nombreAerolinea, LOCK_UN);
+                    flock($escritura_txt_id_nombreAerolinea, LOCK_UN);
                     fclose($escritura_txt_id_nombreAerolinea);  //cierro escritura
                 } else {
 
@@ -40,7 +40,7 @@ and open the template in the editor.
                     fclose($lectura_txt_id_nombreAerolinea);    //cierro lectura//*********************
 
                     $lectura_txt_id_nombreAerolinea = fopen("iDnombreAerolinea.txt", 'r'); //abro lectura
-//                    flock($lectura_txt_id_nombreAerolinea, LOCK_SH);  //bloqueo lectura
+                    flock($lectura_txt_id_nombreAerolinea, LOCK_SH);  //bloqueo lectura
 
                     $leerIdAero = fgetcsv($lectura_txt_id_nombreAerolinea, 999, ";");   //lee la primera linea
 
@@ -52,13 +52,13 @@ and open the template in the editor.
                     $maxIds = max($vectorIds);
                     $id_aerolinea = $maxIds + 1;
 
-//                    flock($lectura_txt_id_nombreAerolinea, LOCK_UN);
+                    flock($lectura_txt_id_nombreAerolinea, LOCK_UN);
                     fclose($lectura_txt_id_nombreAerolinea);    //cierro lectura
 
                     $escritura_txt_id_nombreAerolinea = fopen("iDnombreAerolinea.txt", 'a');   //abro escritura
-//                    flock($escritura_txt_id_nombreAerolinea, LOCK_EX);
+                    flock($escritura_txt_id_nombreAerolinea, LOCK_EX);
                     fwrite($escritura_txt_id_nombreAerolinea, $id_aerolinea . ";" . $nombreAerolinea . "\n");
-//                    flock($escritura_txt_id_nombreAerolinea, LOCK_UN);
+                    flock($escritura_txt_id_nombreAerolinea, LOCK_UN);
                     fclose($escritura_txt_id_nombreAerolinea);  //cierro escritura
                 }
             }
@@ -82,7 +82,6 @@ and open the template in the editor.
             <!--si nDestinos = 3 por ejemplo debe mostrar 3 selec y selecionar uno de cada uno sin que se repita la ciudad para eso debemos eliminar el atributo multiple-->  
 
             <?php
-            echo $nDestinos;
             for ($i = 0; $i < $nDestinos; $i++) {
                 ?>
                 <p>Destino <?php echo $i ?> </p>
@@ -93,13 +92,10 @@ and open the template in the editor.
                         ?><option value="<?php echo $ciudad; ?>"><?php echo $ciudad ?></option><?php
                     }
                     ?>
-
-
-
                 </select>
             <?php } ?>
             <input type="hidden" name="id_aerolinea" value="<?php echo $id_aerolinea; ?>">
-            <input type="hidden" name="nombreAerolinea" value="<?php echo $_POST['nombreAerolinea']; ?>">
+            <input type="hidden" name="nombreAerolinea" value="<?php echo $nombreAerolinea; ?>">
             <input type="submit" name="enviarDestino" value="Enviar">
         </form>
     </body>

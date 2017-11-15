@@ -15,9 +15,6 @@ and open the template in the editor.
         $vectorCiudadesDestino = $_POST['vectorCiudadesDestino'];
         $id_aerolinea = $_POST['id_aerolinea'];
         $nombreAerolinea = $_POST['nombreAerolinea'];
-//        $escritura_txt_altaCompleta = fopen("altaCompleta.txt", 'a');    //modo escritura
-//        $lectura_txt_altaCompleta = fopen("altaCompleta.txt", 'r');   //modo lectura
-//        $lectura_txt_id_nombreAerolinea = fopen("iDnombreAerolinea.txt", 'r');    //modo lectura
 
         $escritura_txt_altaCompleta = fopen("altaCompleta.txt", 'a');    //modo escritura
         flock($escritura_txt_altaCompleta, LOCK_EX);  //bloqueo escritura
@@ -65,7 +62,7 @@ and open the template in the editor.
 
             for ($inde = 0; $inde < count($nombreDest[0]); $inde++) {
 
-                if ($nombreAero[0][$ind] == $nombreDest[1][$inde]) {    // value='" . .  "'". 
+                if ($nombreAero[0][$ind] == $nombreDest[0][$inde]) {    // value='" . .  "'". 
                     echo"<input type='radio' name='destinos'>" . $nombreDest[1][$inde] . "</input>";
                 }
 
