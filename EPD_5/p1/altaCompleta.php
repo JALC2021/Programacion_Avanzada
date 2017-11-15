@@ -7,10 +7,10 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="estilo.css">
         <title></title>
     </head>
     <body>
-        <h2>ALTA AEROLINEA: OK</h2>
         <?php
         $vectorCiudadesDestino = $_POST['vectorCiudadesDestino'];
         $id_aerolinea = $_POST['id_aerolinea'];
@@ -25,7 +25,7 @@ and open the template in the editor.
         flock($escritura_txt_altaCompleta, LOCK_UN);
         fclose($escritura_txt_altaCompleta);
         ?> 
-        <h2>Aerol&iacute;neas registradas</h2> 
+        <h1>Aerol&iacute;neas registradas</h1> 
         <?php
         //Leemos las aerolineas
         $nombreAero = array();
@@ -58,21 +58,20 @@ and open the template in the editor.
 
         for ($ind = 0; $ind < count($nombreAero[0]); $ind++) {
             echo "<article>";
-            echo "<h4>" . $nombreAero[1][$ind] . "</h4>";
+            echo "<h2>" . $nombreAero[1][$ind] . "</h2>";
 
             for ($inde = 0; $inde < count($nombreDest[0]); $inde++) {
 
                 if ($nombreAero[0][$ind] == $nombreDest[0][$inde]) {    // value='" . .  "'". 
                     echo"<input type='radio' name='destinos'>" . $nombreDest[1][$inde] . "</input>";
                 }
-
-                echo "</article>";
             }
+            echo "</article>";
         }
         ?>
         <form method="post" action="altaVuelos.php">
-            <br />
-            Seleccione Origen y pulse: <input type="submit" name="enviarDestino" value="Enviar">
+
+            <h4>Seleccione Origen y pulse:</h4> <input type="submit" name="enviarDestino" value="Enviar">
 
         </form>
     </body>

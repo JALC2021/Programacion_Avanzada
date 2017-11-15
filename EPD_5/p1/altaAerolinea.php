@@ -7,6 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
+             <link rel="stylesheet" type="text/css" href="estilo.css">
         <title>Epd_5_p1</title>
     </head>
     <body>
@@ -78,13 +79,12 @@ and open the template in the editor.
         }
         ?>
 
-        <form method="post" action ="altaCompleta.php" name="alta">
-            <!--si nDestinos = 3 por ejemplo debe mostrar 3 selec y selecionar uno de cada uno sin que se repita la ciudad para eso debemos eliminar el atributo multiple-->  
+        <form method="post" action ="altaCompleta.php" name="alta">  
 
             <?php
             for ($i = 0; $i < $nDestinos; $i++) {
                 ?>
-                <p>Destino <?php echo $i ?> </p>
+                <p>Destino <?php echo $i+1 ?> </p>
 
                 <select  size="8" name="vectorCiudadesDestino[]">    
                     <?php
