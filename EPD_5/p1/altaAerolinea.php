@@ -25,21 +25,26 @@ and open the template in the editor.
             }
 
             if (!isset($errores)) {
+
                 echo $id_aerolinea;     //*********************
                 die("hola1");
-                $lectura_txt_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r'); //abro lectura
+                $lectura_txt_id_nombreAerolinea = fopen("iDnombreAerolinea.txt", 'r'); //abro lectura
+
                 echo $id_aerolinea;     //*********************
                 die("hola2");
-                if (filesize("id_nombreAerolinea.txt") <= 0) {
+
+                if (filesize("iDnombreAerolinea.txt") <= 0) {
+
                     echo $id_aerolinea;     //*********************
                     die("hola1");
+
                     fclose($lectura_txt_id_nombreAerolinea);    //cierro lectura
                     $id_aerolinea = 0;
 
-                    $escritura_txt_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');   //abro escritura
-                    flock($escritura_txt_id_nombreAerolinea, LOCK_EX);  //bloqueo escritura
+                    $escritura_txt_id_nombreAerolinea = fopen("iDnombreAerolinea.txt", 'a');   //abro escritura
+//                    flock($escritura_txt_id_nombreAerolinea, LOCK_EX);  //bloqueo escritura
                     fwrite($escritura_txt_id_nombreAerolinea, $id_aerolinea . ";" . $nombreAerolinea . "\n");
-                    flock($escritura_txt_id_nombreAerolinea, LOCK_UN);
+//                    flock($escritura_txt_id_nombreAerolinea, LOCK_UN);
                     fclose($escritura_txt_id_nombreAerolinea);  //cierro escritura
                 } else {
                     echo $id_aerolinea;     //*********************
@@ -47,9 +52,9 @@ and open the template in the editor.
                     //lectura del fichero para comprobar id
                     echo $id_aerolinea;
                     fclose($lectura_txt_id_nombreAerolinea);    //cierro lectura//*********************
-                    $lectura_txt_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r'); //abro lectura
 
-                    flock($lectura_txt_id_nombreAerolinea, LOCK_SH);  //bloqueo lectura
+                    $lectura_txt_id_nombreAerolinea = fopen("iDnombreAerolinea.txt", 'r'); //abro lectura
+//                    flock($lectura_txt_id_nombreAerolinea, LOCK_SH);  //bloqueo lectura
 
                     $leerIdAero = fgetcsv($lectura_txt_id_nombreAerolinea, 999, ";");   //lee la primera linea
 
@@ -61,13 +66,13 @@ and open the template in the editor.
                     $maxIds = max($vectorIds);
                     $id_aerolinea = $maxIds + 1;
 
-                    flock($lectura_txt_id_nombreAerolinea, LOCK_UN);
+//                    flock($lectura_txt_id_nombreAerolinea, LOCK_UN);
                     fclose($lectura_txt_id_nombreAerolinea);    //cierro lectura
 
-                    $escritura_txt_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'a');   //abro escritura
-                    flock($escritura_txt_id_nombreAerolinea, LOCK_EX);
+                    $escritura_txt_id_nombreAerolinea = fopen("iDnombreAerolinea.txt", 'a');   //abro escritura
+//                    flock($escritura_txt_id_nombreAerolinea, LOCK_EX);
                     fwrite($escritura_txt_id_nombreAerolinea, $id_aerolinea . ";" . $nombreAerolinea . "\n");
-                    flock($escritura_txt_id_nombreAerolinea, LOCK_UN);
+//                    flock($escritura_txt_id_nombreAerolinea, LOCK_UN);
                     fclose($escritura_txt_id_nombreAerolinea);  //cierro escritura
                 }
             }

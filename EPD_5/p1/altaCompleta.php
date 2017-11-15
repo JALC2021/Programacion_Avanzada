@@ -17,7 +17,7 @@ and open the template in the editor.
         $nombreAerolinea = $_POST['nombreAerolinea'];
 //        $escritura_txt_altaCompleta = fopen("altaCompleta.txt", 'a');    //modo escritura
 //        $lectura_txt_altaCompleta = fopen("altaCompleta.txt", 'r');   //modo lectura
-//        $lectura_txt_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r');    //modo lectura
+//        $lectura_txt_id_nombreAerolinea = fopen("iDnombreAerolinea.txt", 'r');    //modo lectura
 
         $escritura_txt_altaCompleta = fopen("altaCompleta.txt", 'a');    //modo escritura
         flock($escritura_txt_altaCompleta, LOCK_EX);  //bloqueo escritura
@@ -32,7 +32,7 @@ and open the template in the editor.
         <?php
         //Leemos las aerolineas
         $nombreAero = array();
-        $lectura_txt_id_nombreAerolinea = fopen("id_nombreAerolinea.txt", 'r');    //modo lectura
+        $lectura_txt_id_nombreAerolinea = fopen("iDnombreAerolinea.txt", 'r');    //modo lectura
         flock($lectura_txt_id_nombreAerolinea, LOCK_SH);  //bloqueo lectura
 
         $leerNomAero = fgetcsv($lectura_txt_id_nombreAerolinea, 999, ";");   //lee la primera linea
@@ -58,6 +58,7 @@ and open the template in the editor.
         fclose($lectura_txt_altaCompleta);
 //        tenemos que mostrar en la web el nombre de las aerolineas. y los destinos de cada aerolinea en un radio boton 
 //        imprimo las aerolineas y sus destinos
+
         for ($ind = 0; $ind < count($nombreAero[0]); $ind++) {
             echo "<article>";
             echo "<h4>" . $nombreAero[1][$ind] . "</h4>";
@@ -67,11 +68,10 @@ and open the template in the editor.
                 if ($nombreAero[0][$ind] == $nombreDest[1][$inde]) {    // value='" . .  "'". 
                     echo"<input type='radio' name='destinos'>" . $nombreDest[1][$inde] . "</input>";
                 }
-                    
+
                 echo "</article>";
             }
         }
-        
         ?>
         <form method="post" action="altaVuelos.php">
             <br />
