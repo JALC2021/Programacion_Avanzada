@@ -18,7 +18,7 @@ and open the template in the editor.
         $lectura_txt_ciudades = fopen("ciudades.txt", 'r');
         $id_aerolinea = NULL;
         $vectorIds = array();
-//
+        
         if (!isset($_POST['siguiente'])) {
             if (!isset($_POST['nombreAerolinea'])) {
                 $errores[] = 'Debe indicar el nombre de la erol&iacute;neaianea';
@@ -30,7 +30,7 @@ and open the template in the editor.
                     $id_aerolinea = 0;
 
                     flock($escritura_txt_id_nombreAerolinea, LOCK_EX);  //bloqueo escritura
-                    fwrite($escritura_txt_id_nombreAerolinea, $id_aerolinea . ";" . $_POST['nombreAerolinea'] . "\n");
+                    fwrite($escritura_txt_id_nombreAerolinea, $id_aerolinea . ";" .  $nombreAerolinea  . "\n");
                     flock($escritura_txt_id_nombreAerolinea, LOCK_UN);
                     fclose($escritura_txt_id_nombreAerolinea);
                 } else {
@@ -52,7 +52,7 @@ and open the template in the editor.
                     fclose($lectura_txt_id_nombreAerolinea);
 
                     flock($escritura_txt_id_nombreAerolinea, LOCK_EX);
-                    fwrite($escritura_txt_id_nombreAerolinea, $id_aerolinea . ";" . $_POST['nombreAerolinea'] . "\n");
+                    fwrite($escritura_txt_id_nombreAerolinea, $id_aerolinea . ";" . $nombreAerolinea . "\n");
                     flock($escritura_txt_id_nombreAerolinea, LOCK_UN);
                     fclose($escritura_txt_id_nombreAerolinea);
                 }
@@ -76,7 +76,7 @@ and open the template in the editor.
             <!--si nDestinos = 3 por ejemplo debe mostrar 3 selec y selecionar uno de cada uno sin que se repita la ciudad para eso debemos eliminar el atributo multiple-->
            <!--<select multiple size="8" name="vectorCiudadesDestino[]">-->   
 
-            <?php for ($i = 0; $i <= count($_POST['nombreAerolinea']); $i++) { ?>
+            <?php for ($i = 0; $i <= count( $nDestinos); $i++) { ?>
                 <p>Destino <?php echo $i ?> </p>
 
                 <select  size="8" name="vectorCiudadesDestino[]">    
@@ -89,7 +89,7 @@ and open the template in the editor.
                 </select>
             <?php } ?>
             <input type="hidden" name="id_aerolinea" value="<?php echo $id_aerolinea; ?>">
-            <input type="hidden" name="nombreAerolinea" value="<?php echo $_POST['nombreAerolinea']; ?>">
+            <input type="hidden" name="nombreAerolinea" value="<?php echo $nombreAerolinea; ?>">
             <input type="submit" name="enviarDestino" value="Enviar">
         </form>
     </body>
