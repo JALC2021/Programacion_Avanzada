@@ -1,15 +1,2 @@
-0;Paris
-0;Sevilla
+0;Roma
 0;Madrid
-1;Sevilla
-1;Roma
-1;Madrid
-1;Barcelona
-3;Madrid
-3;Sevilla
-4;Londres
-4;Amsterdam
-5;Londres
-5;Barcelona
-5;Madrid
-5;Roma
