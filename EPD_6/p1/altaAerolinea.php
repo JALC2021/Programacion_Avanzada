@@ -11,6 +11,15 @@ and open the template in the editor.
     </head>
     <?php
     if (isset($_POST['siguiente'])) {
+        ?><article>
+            <section>
+                <h1>Opciones</h1>
+                <a href="altaAerolinea.php">Alta Aerol&iacute;nea</a>
+                <a href="altaVuelos.php">Alta Vuelos</a>
+                <a href="informeResumen.php">Informe Resumen</a>
+            </section>
+        </article>
+        <?php
         $conexion = mysqli_connect("localhost", "user", "user");
         if (!$conexion)
             die('No puedo conectar:' . mysqli_error($conexion));
@@ -38,16 +47,14 @@ and open the template in the editor.
             die("Error al ejecutar la consulta: " . mysqli_error($conexion));
         }
         mysqli_close($conexion);
-    }else{
-        
-
-    //if (!isset($_POST['siguiente'])) {
+    } else {
         ?>
-    <form method="post" action ="." name="alta">
+        <form method="post" action ="" name="alta">
             Nombre: <br /><input type="text" name="nombreAerolinea"><br />
             N&uacute;mero de Destinos:<br /><input type="number" name="numeroDestinos" min="2" max="8"><br />
             <input type="submit" name="siguiente" value="Siguiente">
         </form>		
+
         <?php
     }
     ?>
