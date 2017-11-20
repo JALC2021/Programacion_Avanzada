@@ -6,25 +6,18 @@ and open the template in the editor.
 -->
 <html>
     <head>
+        <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="estilo.css">
         <title>Epd_6_p1</title>
     </head>
     <body>
-        <form method="get" action=".">
-            <input type="submit" name="altaAerolinea" value="Alta Aerolinea"> 
-            <input type="submit" name="altaVuelos" value="Alta Vuelos"> 
-            <input type="submit" name="informeResumen" value="Informe Resumen"> 
-        </form>
-        <?php
-        if (isset($_GET['altaAerolinea'])) {
-            require './altaAerolinea.php';
-        }
-        if (isset($_GET['altaVuelos'])) {
-            require './altaVuelos.php';
-        }
-        if (isset($_GET['informeResumen'])) {
-            require './informeResumen.php';
-        }
-        ?>
+        <article>
+            <section>
+                <h1>Opciones</h1>
+                <a href="altaAerolinea.php">Alta Aerol&iacute;nea</a>
+                <a href="altaVuelos.php">Alta Vuelos</a>
+                <a href="informeResumen.php">Informe Resumen</a>
+            </section>
+        </article>
     </body>
 </html>
