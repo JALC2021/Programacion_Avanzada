@@ -34,7 +34,9 @@ and open the template in the editor.
         $result = mysqli_query($conexion, $queryCiudades);
 
         while ($fila = mysqli_fetch_array($result)) {
-            echo $fila['ciudad'];
+            //echo $fila['ciudad'];
+            $vectorCiudades[]=$fila;
+            
         }
         echo count($fila);
         if (!$result) {
@@ -53,7 +55,7 @@ and open the template in the editor.
                 <select  size="8">    
                     <?php
 //                        foreach ($fila as $ciudad) {
-                    for ($index = 0; $index < count($fila[0]); $index++) {
+                    for ($index = 0; $index < count( $vectorCiudade); $index++) {
                         ?><option value="<?php echo $fila[$index]; ?>"><?php echo $fila[$index]; ?></option><?php
                     }
                 }
