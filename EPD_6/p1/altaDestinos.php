@@ -11,8 +11,10 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        if (!isset($_POST['enviarDestino'])) {
-            $numreroDesinos = $_POST['numeroDestinos'];
+        if (isset($_POST['siguiente'])) {
+            $nombreAerolinea = $_POST['nombre'];
+            $numreroDestinos = $_POST['numeroDestinos'];
+            $nombreCiudad = NULL;
             ?><h2>Elige Destinos</h2><?php
             $vectorCiudades = array();
             $conexion = mysqli_connect("localhost", "user", "user");
@@ -37,24 +39,30 @@ and open the template in the editor.
             mysqli_close($conexion);
             ?>
 
-            <?php $numeroDestino = $_POST['numeroDestinos']; ?>
-            <form method = "post" action = "aerolineaCompleta.php">
+
+            <form method = "post" action = "">
                 <?php
-                for ($i = 0; $i < $numeroDestino; $i++) {
+                for ($i = 0; $i < $numreroDestinos; $i++) {
                     ?>
                     <p>Destino <?php echo $i + 1 ?> </p>
 
-                    <select  size="8">    
+                    <select  size="8" name="nombreCiudad[]">    
                         <?php
-                        foreach ($vectorCiudades as $ciudad) {
-                            ?><option value="<?php echo $ciudad ?>"><?php echo $ciudad ?></option><?php
+                        foreach ($vectorCiudades as $nombreCiudad) {
+                            ?><option value="<?php echo $nombreCiudad ?>"><?php echo $nombreCiudad ?></option><?php
                         }
                         ?>
                     </select>
                     <?php
                 }
-                ?><br /> <input type="submit" name="enviarDestino" value="Enviar"><?php
-            } else {
+                ?><br /> <input type="submit" name="enviarDestino" value="Enviar" />
+                <input  type="hidden" name="nombreAerolinea" value="<?php echo $nombreAerolinea; ?>"/>
+                <?php
+            }
+
+            if (isset($_POST['enviarDestino'])) {
+                $nombreAerolinea = $_POST['nombreAerolinea'];
+                $vectorCiudad = $_POST['nombreCiudad'];
 
                 $conexion = mysqli_connect("localhost", "user", "user");
                 if (!$conexion) {
@@ -65,12 +73,32 @@ and open the template in the editor.
                 if (!$db_selected) {
                     die('No puedo usar la base de datos: ' . mysqli_error($conexion));
                 }
-                $sql = "INSERT INTO `altaAerolinea`(`idAerolinea`, `nombreAerolinea`, `numeroDestinos`) VALUES (NULL,'$_POST[nombreAerolinea]','$_POST[numeroDestinos]')";
-                $result = mysqli_query($conexion, $sql);
-                if (!$result) {
+                $sqlInsertAerolineas = "INSERT INTO aerolineas (nombre) VALUES ('$nombreAerolinea')";
+                $resultInsertAerolineas = mysqli_query($conexion, $sqlInsertAerolineas);
+
+                $queryIdAerolineas = "SELECT id FROM aerolineas WHERE nombre='$nombreAerolinea'";
+                $resultIdAerolinea = mysqli_query($conexion, $queryIdAerolineas);
+                $resId = mysqli_fetch_array($resultIdAerolinea);    //devuelve el valor en un vector de posiciones segun campos
+
+                foreach ($vectorCiudad as $nCiudad) {
+                    $sqlInsertDestinos = "INSERT INTO destinos (idAerolinea,nombreCiudad) VALUES ('$resId[0]','$nCiudad')";
+                    $resultInsertDestinos = mysqli_query($conexion, $sqlInsertDestinos);
+                }
+
+                if (!$resultInsertAerolineas || !$resultInsertDestinos) {
                     die("Error al ejecutar la consulta: " . mysqli_error($conexion));
                 }
                 mysqli_close($conexion);
+                ?>
+                <article>
+                    <section>
+                        <h1>Opciones</h1>
+                        <a href="altaAerolinea.php">Alta Aerol&iacute;nea</a>
+                        <a href="altaVuelos.php">Alta Vuelos</a>
+                        <a href="informeResumen.php">Informe Resumen</a>
+                    </section>
+                </article>
+                <?php
             }
             ?>
 

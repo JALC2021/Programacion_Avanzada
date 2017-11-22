@@ -11,23 +11,15 @@ and open the template in the editor.
     </head>
     <?php
     if (!isset($_POST['siguiente'])) {
-        ?><article>
-            <section>
-                <h1>Opciones</h1>
-                <a href="altaAerolinea.php">Alta Aerol&iacute;nea</a>
-                <a href="altaVuelos.php">Alta Vuelos</a>
-                <a href="informeResumen.php">Informe Resumen</a>
-            </section>
-        </article>
-
+        ?>
         <form method="post" action ="altaDestinos.php" name="alta">
-            Nombre: <br /><input type="text" name="nombreAerolinea" /><br />
+            Nombre: <br /><input type="text" name="nombre" /><br />
             N&uacute;mero de Destinos:<br /><input type="number" name="numeroDestinos" min="2" max="8" /><br />
             <input type="submit" name="siguiente" value="Siguiente" />
         </form>		
 
         <?php
     }
-        ?>
+    ?>
 </body>
 </html>
