@@ -11,8 +11,10 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        if (!isset($_POST['altaVuelo'])) {
-            ?><h2>Elige Aerol&iacute;nea</h2><?php
+        if (isset($_POST['altaVuelo'])) {
+
+            $origen = $_POST['ciudadOrigen'];
+            $pos = array(explode(";", $origen));
 //            $vectorCiudades = array();
             $conexion = mysqli_connect("localhost", "user", "user");
             if (!$conexion) {
@@ -48,29 +50,51 @@ and open the template in the editor.
                 die('Error al ejecutar la consulta: ' . mysqli_error($conexion));
             }
             mysqli_close($conexion);
-        }
-        ?>
-        <form method = "post" action = "altaOrigenDestino.php">
-            <?php
-            for ($ind = 0; $ind < count($vectorResIdyNombre[0]); $ind++) {
-                echo "<article>";
-                echo "<h2>" . $vectorResIdyNombre[1][$ind] . "</h2>";
 
-                for ($inde = 0; $inde < count($vectorResIdyOrigen[0]); $inde++) {
-
-                    if ($vectorResIdyNombre[0][$ind] == $vectorResIdyOrigen[0][$inde]) {
-                        ?><input type="radio" name="ciudadOrigen" value="<?php echo $vectorResIdyOrigen[0][$inde] . ";" . $vectorResIdyOrigen[1][$inde]; ?>">
-                        <?php
-                        echo $vectorResIdyOrigen[1][$inde];
-                    }
+            for ($i = 0; $i < count($vectorResIdyNombre[0]); $i++) {
+                if ($vectorResIdyNombre[0][$i] == $pos[0][0]) {
+                    //imprimo el nombre de la aerolinea selecionoada en el origen
+                    $nombreAerolineaSeleccionada = $vectorResIdyNombre[1][$i];
+                    ?> <h1> Aerol&iacute;nea Seleccionada: <?php echo $vectorResIdyNombre[1][$i]; ?></h1><?php
                 }
-                echo "</article>";
+            }
+
+            $vOrigenes = array();
+            ?><h3>Origen: <?php echo $pos[0][1]; ?> </h3> 
+            <?php
+            for ($k = 0; $k < count($vectorResIdyOrigen[0]); $k++) {
+                if ($vectorResIdyOrigen[0][$k] == $pos[0][0]) {
+                    $vOrigenes[] = $vectorResIdyOrigen[1][$k];
+                }
             }
             ?>
+            <form method="post" action="vueloCompleto.php">
+                <?php
+                $busquedaPos = array_search($pos[0][1], $vOrigenes);
+                unset($vOrigenes[$busquedaPos]);
+                if (empty($vOrigenes)) {
+                    echo "Esta aerolínea esta completa";
+                } else {
+                    ?>
+                    Destino:<br />
+                    <select name="cDestino">
+                        <?php foreach ($vOrigenes as $value) {
+                            ?><option value="<?php echo $value; ?>"><?php echo $value; ?></option>  <?php
+                        }
+                    }
+                    ?>
+                </select>
+                <br />Introduzca ti&eacute;mpo de vuelo: <br /><input type="time" name="tiempoVuelo" value="Siguiente"><br />
+                <br />Comprobar: <br /><input type="submit" name="vueloCompleto" value="Enviar">
+                <input type="hidden" name="nombreAerolinea" value="<?php echo $nombreAerolineaSeleccionada; ?>">
+                <input type="hidden" name="id_aerolinea" value="<?php echo $pos[0][0]; ?>">
+                <input type="hidden" name="cOrigen" value="<?php echo $pos[0][1]; ?>">
 
-            <h4>Seleccione Origen:</h4> <input type="submit" name="altaVuelo" value="Siguiente" />
+            </form>
+            <?php
+        }
+        ?>
 
-        </form>
 
     </body>
 </html>
