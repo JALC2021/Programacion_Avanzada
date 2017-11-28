@@ -9,17 +9,44 @@ and open the template in the editor.
         <title>epd_7_p5</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script>
-            function temperaturas(temMin, temMax) {
-                return VectorTemperaturasAleatorias = [temMin][temMax];
+        <script type="text/javascript">
+
+            function numeroAleatorioRango(temMin, temMax, contadorPacientes) {
+                var vetorTemperaturasAleatorias = [];
+                for (var i = 0; i < contadorPacientes; i++) {
+                    var numAlea = Math.random() * (temMax - temMin) + temMin;
+                    var numAleaFinal = numAlea.toFixed(1);
+                    vetorTemperaturasAleatorias.push(numAleaFinal);
+                }
+
+                return vetorTemperaturasAleatorias;
             }
+
         </script>
     </head>
     <body>
-        <script>
+        <script type="text/javascript">
             var nombrePacientes = ["Pepe", "Maria", "Manuel", "Isabel"];
-            var temMin = prompt("Introduce la temperatura mínima", temMin);
-            var temMax = prompt("Introduce la temperatura máxima", temMax);
+
+            var contadorPacientes = nombrePacientes.length;
+            var temMin = parseInt(prompt("Introduce la temperatura mínima"));
+            var temMax = parseInt(prompt("Introduce la temperatura máxima"));
+
+            var vector = numeroAleatorioRango(temMin, temMax, contadorPacientes);
+
+            for (var i = 0; i < vector.length; i++) {
+                document.write(vector[i]+"<br />");
+            }
+
+            // tmax = prompt("tmax", tmax) + "<br />";
+            /*for (var i = 0; i < cuantosNumero.length; i++) {
+             numAlea = getRandomArbitrary(temMin, temMax);
+             document.write(numAlea + "<br />");
+             }
+             numAlea = getRandomArbitrary(temMin, temMax);
+             document.write(numAlea);*/
+
+
             /*for (var i = 0; i < nombrePacientes.length; i++) {
              document.write(nombrePacientes[i] + "<br />");
              }*/
@@ -29,11 +56,9 @@ and open the template in the editor.
             //var VectorTemperaturasAleatorias = array();
             //if (temMin >= temMax) {
 
-            document.write('pepe');
-            var VectorTemperaturasAleatorias = VectorTemperaturasAleatorias[temMin][temMax];
-            document.write(VectorTemperaturasAleatorias[0][0]);
-            document.write(VectorTemperaturasAleatorias[1][0]);
-
+            //document.write(temMin + "<br />");
+            //document.write(temMax + "<br />");
+            //document.write(cuantosNumero + "<br />");
 
 
             // }
@@ -50,9 +75,6 @@ and open the template in the editor.
              }
              
              }*/
-
-            document.write(temMin + "<br />");
-            document.write(temMax);
 
         </script>
     </body>
