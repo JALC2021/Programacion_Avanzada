@@ -7,6 +7,20 @@ and open the template in the editor.
 <html>
     <head>
         <title>epd_7_p5</title>
+        <style>
+            body{background: khaki;}
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 5px;
+            }
+            th {
+                text-align: left;
+            }
+
+        </style>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript">
@@ -22,60 +36,55 @@ and open the template in the editor.
                 return vetorTemperaturasAleatorias;
             }
 
+
+            function pacienteTemperatura(vectorPacientes, vectorTemAleatorias) {
+
+                document.write("<table width=200 border=1 cellpadding=1 cellspacing=1>");
+
+                document.write("<tr>");
+                document.write("<th>Nombre Paciente</th>");
+                for (var i = 0; i < vectorPacientes.length; i++) {
+
+                    document.write("<td>" + vectorPacientes[i] + "</td>");
+
+                }
+                document.write("</tr>");
+                document.write("<tr>");
+                document.write("<th>Temperatura</th>");
+                for (var j = 0; j < vectorTemAleatorias.length; j++) {
+
+                    document.write("<td>" + vectorTemAleatorias[j] + "</td>");
+
+                }
+                document.write("</tr>");
+
+                document.write("</table>");
+
+            }
         </script>
     </head>
+
     <body>
         <script type="text/javascript">
-            var nombrePacientes = ["Pepe", "Maria", "Manuel", "Isabel"];
 
-            var contadorPacientes = nombrePacientes.length;
+            var vectorPacientes = ["Pepe", "Maria", "Manuel", "Isabel"];
+            var contadorPacientes = vectorPacientes.length;
+
             var temMin = parseInt(prompt("Introduce la temperatura mínima"));
             var temMax = parseInt(prompt("Introduce la temperatura máxima"));
 
-            var vector = numeroAleatorioRango(temMin, temMax, contadorPacientes);
+            if (temMin >= temMax) {
+                alert("La temperatura ínima no puede ser mayor que la temperatura máxima, vuelva  intentarlo");
+                var temMin = parseInt(prompt("Introduce la temperatura mínima"));
+                var temMax = parseInt(prompt("Introduce la temperatura máxima"));
 
-            for (var i = 0; i < vector.length; i++) {
-                document.write(vector[i]+"<br />");
             }
 
-            // tmax = prompt("tmax", tmax) + "<br />";
-            /*for (var i = 0; i < cuantosNumero.length; i++) {
-             numAlea = getRandomArbitrary(temMin, temMax);
-             document.write(numAlea + "<br />");
-             }
-             numAlea = getRandomArbitrary(temMin, temMax);
-             document.write(numAlea);*/
-
-
-            /*for (var i = 0; i < nombrePacientes.length; i++) {
-             document.write(nombrePacientes[i] + "<br />");
-             }*/
-            //var temMin;
-            //var temMax;
-            //var finBucle = 'f';
-            //var VectorTemperaturasAleatorias = array();
-            //if (temMin >= temMax) {
-
-            //document.write(temMin + "<br />");
-            //document.write(temMax + "<br />");
-            //document.write(cuantosNumero + "<br />");
-
-
-            // }
-
-            /* while (temMin < temMax || !finBucle) {
-             temMin = prompt("Introduce la temperatura mínima", temMin);
-             temMax = prompt("Introduce la temperatura máxima", temMax);
-             VectorTemperaturasAleatorias = [temMin][temMax];
-             }*/
-            /*var VectorTemperaturasAleatorias = [temMin][temMax];
-             for (var j = 0; j < VectorTemperaturasAleatorias[temMin].length; j++) {
-             for (var k = 0; k < VectorTemperaturasAleatorias[temMax].length; k++) {
-             document.write(nombrePacientes[j][k] + "<br />");
-             }
-             
-             }*/
+            var vectorTemAleatorias = numeroAleatorioRango(temMin, temMax, contadorPacientes);
+            var vectorfinal = pacienteTemperatura(vectorPacientes, vectorTemAleatorias);
 
         </script>
+
+        <footer><h2>Realizado por: Gonzalo del R&iacute;o | Susana de la calle | Juan Antonio L&oacute;pez</h2></footer>
     </body>
 </html>
