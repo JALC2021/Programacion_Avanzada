@@ -10,11 +10,23 @@ and open the template in the editor.
         <title>epd_7_ej2</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            function Redondeo(numero, cadenaCifraRedondeo)
+            {
+                var num = parseFloat(numero);
+                var resultado = Math.round(num * Math.pow(10, cadenaCifraRedondeo)) / Math.pow(10, cadenaCifraRedondeo);
+                return resultado;
+            }
+
+        </script>
     </head>
     <body>
         <script type="text/javascript">
-
-            document.write("hola");
+            var cadenaPrincipal = parseFloat(prompt("Introduzca el numero que desea redondear"));
+            //cadenaPrincipal.charCodeAt(0);
+            var cadenaCifraRedondeo = parseInt(prompt("Introduzca la cifra a la que desea redondear"));
+            var cifraFinal = Redondeo(cadenaPrincipal, cadenaCifraRedondeo);
+            document.write("El resultado de redondear " + cadenaPrincipal + " a " + cadenaCifraRedondeo + " es " + cifraFinal);
         </script>
 
     </body>
