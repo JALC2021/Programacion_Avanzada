@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>epd_7_p5</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            function temperaturas(temMin, temMax) {
+                return VectorTemperaturasAleatorias = [temMin][temMax];
+            }
+        </script>
+    </head>
+    <body>
+        <script>
+            var nombrePacientes = ["Pepe", "Maria", "Manuel", "Isabel"];
+            var temMin = prompt("Introduce la temperatura mínima", temMin);
+            var temMax = prompt("Introduce la temperatura máxima", temMax);
+            /*for (var i = 0; i < nombrePacientes.length; i++) {
+             document.write(nombrePacientes[i] + "<br />");
+             }*/
+            //var temMin;
+            //var temMax;
+            //var finBucle = 'f';
+            //var VectorTemperaturasAleatorias = array();
+            //if (temMin >= temMax) {
+
+            document.write('pepe');
+            var VectorTemperaturasAleatorias = VectorTemperaturasAleatorias[temMin][temMax];
+            document.write(VectorTemperaturasAleatorias[0][0]);
+            document.write(VectorTemperaturasAleatorias[1][0]);
+
+
+
+            // }
+
+            /* while (temMin < temMax || !finBucle) {
+             temMin = prompt("Introduce la temperatura mínima", temMin);
+             temMax = prompt("Introduce la temperatura máxima", temMax);
+             VectorTemperaturasAleatorias = [temMin][temMax];
+             }*/
+            /*var VectorTemperaturasAleatorias = [temMin][temMax];
+             for (var j = 0; j < VectorTemperaturasAleatorias[temMin].length; j++) {
+             for (var k = 0; k < VectorTemperaturasAleatorias[temMax].length; k++) {
+             document.write(nombrePacientes[j][k] + "<br />");
+             }
+             
+             }*/
+
+            document.write(temMin + "<br />");
+            document.write(temMax);
+
+        </script>
+    </body>
+</html>
