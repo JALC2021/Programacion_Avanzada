@@ -10,7 +10,7 @@ if (isset($_POST['logout'])) {
 ?>
 <?php
 if (isset($_POST['btnRegistrar'])) {
-    $conec = mysqli_connect("localhost", "root", "");
+    $conec = mysqli_connect("localhost", "user", "user");
     if (!$conec) {
         die('error en la conexion a la base de datos');
     }

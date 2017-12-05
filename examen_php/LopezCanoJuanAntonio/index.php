@@ -3,14 +3,14 @@
 session_start();
 if (isset($_POST['btnLogin'])) {
 
-    $conec = mysqli_connect("localhost", "root", "");
+    $conec = mysqli_connect("localhost", "user", "user");
     if (!$conec) {
         die('error en la conexion a la base de datos');
     }
 //injeccion sql
     $nombreUsuario = mysqli_real_escape_string($conec, $_POST['usuario']);
     $contrasenya = mysqli_real_escape_string($conec, $_POST['password']);
-    $pwd= password_hash($contrasenya);
+//    $pwd= password_hash($contrasenya);
 
     $selecBD = mysqli_select_db($conec, "tiendaropa");
 
@@ -27,7 +27,7 @@ if (isset($_POST['btnLogin'])) {
         $fila = mysqli_fetch_array($resQuery);
         echo ($fila [2]);
     }
-    if (password_verify($pwd, $fila['clave'])) {
+    if (password_verify($contrasenya, $fila['clave'])) {
         echo ("login correcto");
         $_SESSION['nombreUsuario'] = $_POST['usuario'];
         header("location:listado_productos.php");

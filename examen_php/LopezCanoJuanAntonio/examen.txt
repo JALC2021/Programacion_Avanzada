@@ -1,0 +1,11 @@
+* Existen dos roles uno Administrador y otro cliente, solo se pueden registrar cliente por lo tanto no se puede registrar con el rol de Adinistrador.
+* admin -> admin
+* Pepe -> pepe
+* La contraseña debemos usar el passwor verify ya que lo que se almacena en la base de datos en un hash
+* Injeccion sql, saneamiento y validacion para las entradas de los formularios
+* Una vez logueado debe guardar una variable de sesion con el nombre de usuario, y en cada página debe mostrar hola y el nombre de ese usuario logueado.
+* El boton de cerrar sesion debera crear una cookie que recuerde al usuario durante 30 días y lo rellene automaticamente.
+* Mostrar todos los articulos, con su imagen, nombre, descripción, talla y precios en una tabla, las imagenes no deben superar un tañaño.
+* En el registro de usuario se debe comprobar las entradas con expresiones regulares.
+* Alta producto con su correspondiente foto y atributos.
+* Debe mostrar una pagina htlm con el resumen de la compra.
