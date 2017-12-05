@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="es">
+    <head>
+        <title>El lenguaje de hojas de estilo</title>
+        <link rel="stylesheet" type="text/css" href="estilo.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>
+            <h1>SAAS</h1>
+            <h2>El lenguaje de hojas de estilo</h2>
+            <p>Sass (Syntactically Awesome Stylesheets) es un lenguaje de hoja de estilos inicialmente dise&ntilde;ado por Hampton Catlin y desarrollado por Nathan Weizenbaum. Despu&eacute;s de sus versiones iniciales, Nathan Weizenbaum y Chris Eppstein han continuado extendiendo Sass con SassScript, un lenguaje de script simple, usado en los ficheros Sass.
+            </p>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="#">Sass Website</a></li>
+                <li><a href="#">Sass Git</a></li>
+                <li><a href="#">pyScss</a></li>
+            </ul>
+        </nav>
+
+        <aside>
+            <figure><img src="images/sass.png" alt="sass" width="100"></figure>
+            <ol type="1">
+                <li><a href="#intro">Introducci&oacute;n</a></li>
+                <li><a href="#vari">Variables</a></li>
+                <li><a href="#mix">Mixins</a></li>
+                <ol type="1">
+                    <li><a href="#argu">Argumentos</a></li>
+                    <li><a href="#combi">En combinaci&oacute;n</a></li>
+                </ol>
+                <li><a href="#integra">Integraci&oacute;n con los IDEs</a></li>
+                <li><a href="#mixfra">Mixins y frameworks</a></li>
+                <li><a href="#frares">Frameworks responsivos</a></li>
+            </ol>
+        </aside>
+
+        <main>
+            <article>
+                <h3><a name="intro">Introducci&oacute;n</a></h3>
+                <section>
+                    <p>Sass es un metalenguaje de Hojas de Estilo en Cascada (CSS). Es un lenguaje de script que es traducido a CSS. SassScript es el lenguaje de script en s&iacute; mismo. Sass consiste en dos sintaxis. La sintaxis original, llamada indented syntax (&lt;&lt;sintaxis con sangrado&gt;&gt;) que usa una sintaxis similar al Haml. &Eacute;ste usa la indentaci&oacute;n para separar bloques de c&oacute;digo y el car&aacute;cter nueva l&iacute;nea para separar reglas.</p>
+                    <figure><img src="images/esquema-sass.png" alt="esquema" width="300"></figure><figcaption >Fig 1. Esquema de conversi&oacute;n SASS.</figcaption>
+                    <p>La sintaxis m&aacute;s reciente, SCSS, usa el formato de bloques como CSS. &Eacute;ste usa llaves para denotar bloques de c&oacute;digo y punto y coma (;) para separar las l&iacute;neas dentro de un bloque. La sintaxis indentada y los ficheros SCSS tienen las extensiones .sass y .scss respectivamente.</p>
+                </section>
+                <h3><a name="vari">Variables</a></h3>
+                <section>
+                    <p>Sass permite la definici&oacute;n de variables. Las variables comienzan con el signo de d&oacute;lar ($). La asignaci&oacute;n de variables se hace con los dos puntos (:). SassScript permite 4 tipos de datos:</p>
+                    <ul type="disc">
+                        <li>N&uacute;meros (incluyendo las unidades)</li>
+                        <li>Strings (con comillas o sin ellas)</li>
+                        <li>Colores (c&oacute;digo, o nombre)</li>
+                        <li>Booleanos</li>
+                    </ul>
+                    <p>Las variables pueden ser resultados o argumentos de varias funciones disponibles. Durante el proceso de traducci&oacute;n, los valores de las variables son insertados en el documento CSS de salida</p>
+                </section>
+                <h3><a name="mix">Mixins</a></h3>
+                <section>
+                    <p>CSS no soporta mixins. Cualquier c&oacute;digo duplicado debe ser repetido en cada lugar. Un mixin es una secci&oacute;n de c&oacute;digo que contiene c&oacute;digo Sass. Cada vez que se llama un mixin en el proceso de conversi&oacute;n el contenido del mismo es insertado en el lugar de la llamada. Los mixin permiten una soluci&oacute;n limpia a las repeticiones de c&oacute;digo, as&iacute; como una forma f&aacute;cil de alterar el mismo.</p>
+                    <h4><a name="argu">Argumentos</a></h4>
+                    <p>Los mixins tambi&eacute;n soportan argumentos.</p>
+                    <div class="cuadroCódigo">
+                        <code>
+                            @mixin left($dist) {
+                            float: left;
+                            margin-left: $dist;
+                            }
+
+                            #data {
+                            @include left(10px);
+                            }
+                        </code>
+                    </div>
+                    <p>Debe compilar a:</p>
+                    <div class="cuadroCódigo">
+                        <code>
+                            #data {
+                            float: left;
+                            margin-left: 10px;
+                            }
+                        </code>
+                    </div>
+                    <h4><a name="combi">En combinaci&oacute;n</a></h4>
+                    <div class="cuadroCódigo">
+                        <code>
+                            @mixin table-base {
+                            th {
+                            text-align: center;
+                            font-weight: bold;
+                            }
+                            td, th {padding: 2px}
+                            }
+
+                            @mixin left($dist) {
+                            float: left;
+                            margin-left: $dist;
+                            }
+
+                            #data {
+                            @include left(10px);
+                            @include table-base;
+                            }
+                        </code>
+                    </div>
+                    <p>Debe compilar a:</p>
+                    <div class="cuadroCódigo">
+                        <code>
+                            #data {
+                            float: left;
+                            margin-left: 10px;
+                            }
+                            #data th {
+                            text-align: center;
+                            font-weight: bold;
+                            }
+                            #data td, #data th {
+                            padding: 2px;
+                            }
+                        </code>
+                    </div>
+                </section>
+                <h3><a name="integra">Integraci/&oacute;n con los IDEs</a></h3>
+                <section>
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>IDE</th>
+                                <th>Software</th>
+                                <th>Website</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Microsoft Visual Studio</td>
+                                <td>Mindscape</td>
+                                <td><a href="http://www.mindscapehq.com/products/web-workbench">http://www.mindscapehq.com/products/web-workbench</a></td>
+                            </tr>
+                            <tr>
+                                <td>Eclipse</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>JetBrains RubyMine</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>NetBeans</td>
+                                <td></td>
+                                <td><a href="http://plugins.netbeans.org/plugin/34929/scss-support">http://plugins.netbeans.org/plugin/34929/scss-support</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <h3><a name="mixfra">Mixins y frameworks</a></h3>
+                <section>
+                    <p>Existen varios grupos de mixins o llamados frameworks que basados en Sass hacen m&aacute;s r&aacute;pido el crear o aplicar estilos reduciendo la sintaxis.</p>
+                    <ul type="disc">
+                        <li><a href="http://compass-style.org/">Compass</a></li>
+                        <li><a href="http://bourbon.io/">Bourbon</a></li>
+                    </ul>
+                </section>
+                <h3><a name="frares">Frameworks responsivos</a></h3>
+                <section>
+                    <p>Estos frameworks usan Sass como base y su funci&oacute;n b&aacute;sica es resolver el acomodo de diferentes tama&ntilde;os de pantalla para lograr un dise&ntilde;o responsivo del sitio web.</p>
+                    <ul type="disc">
+                        <li><a href="http://susy.oddbird.net/">Susy </a></li>
+                        <li><a href="http://singularity.gs/">Singularity </a></li>
+                        <li><a href="http://getbootstrap.com/">Bootstrap (a partir de la versi&oacute;n 4) </a></li>
+                    </ul>
+                </section>
+            </article>
+        </main>
+        <footer>
+            <p>Este texto ha sido tomado de <a href="https://es.wikipedia.org/wiki/Sass_(lenguaje_de_hojas_de_estilo">Wikipedia</a></p>
+        </footer>
+    </body>
+</html>

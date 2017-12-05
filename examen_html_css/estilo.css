@@ -1,0 +1,112 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 30-oct-2017, 17:40:32
+    Author     : Juan Antonio López Cano
+*/
+
+body{
+    margin: 0;
+    background: #aaa;
+    font-family: Source sans Pro,Sans Serif;
+    /*font-size: 300%;*/
+    text-align: justify;
+    /*text-height: 1.65px;*/
+}
+
+header{
+    width: 100%;
+    background: url("images/banner.jpg");
+    text-align: center;
+
+    padding-bottom: 2em;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 2em;
+
+}
+header h1{
+    color: #f1f1f1;
+}
+header h2{
+    color:#be4e86;
+}
+
+a {
+    text-decoration: none;
+    /*color: black;*/
+}
+a:hover:not(.active){
+    color: white;
+}
+
+nav{
+    width: 100%;
+    height: 2%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-table;
+    color: #f2f2f2;
+    background: #333;
+}
+nav ul{
+    overflow: hidden;
+}
+nav ul,li{
+    float: left;
+}
+nav ul,li{
+    display: block;
+    text-decoration: none;
+    padding: 14px;
+    text-align: center;
+}
+nav a{
+    color: white;
+}
+
+nav a:hover:not(.active){
+    color: white;
+    background:#be4e86 ;
+}
+aside{
+    width: 25%;
+    float: left;
+}
+article{
+    width: 60%;
+    padding: 1%;
+}
+section{
+    padding: 1%;
+}
+
+footer{
+    width: 100%;
+    padding: 2%;
+    clear: both;
+    color: #eee;
+    background: #333;
+    text-align: center;
+}
+footer a{
+    text-decoration: none;
+    color: white
+}
+table{
+    background: #ddd;
+    border-bottom-style: solid;
+    border: 2em;
+}
+table thead{
+    color: #be4e86;
+}
+table td{
+    background:#efefef;
+}
+table a{
+    color: black;
+}
