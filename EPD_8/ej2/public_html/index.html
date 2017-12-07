@@ -82,11 +82,44 @@ and open the template in the editor.
             //var nCompanyas = parseInt(prompt("Introduce el numero de compañias"));
             //var companias = imprimirTabla();
             var vector = numerosAleatorios();
-            for (var i = 0; i < vector.length; i++) {
+            var vfinal = [vector[0]];
+            //var vn = [];
+            for (var i = 1; i < vector.length; i++) {
+                //document.write(vector[0] + " ");
+                //document.write("<br />");
+                if (vector[0] < vector[i]) {
+                    
+                    vfinal.push("-");
+                    //vector.splice(1,vector[i], "-");
+                    //vector.shift(vector[i]);
+                    //vector.push("-");
+                    // document.write(vector[0] + " - " + vector[i]);
+                    //document.write("<br />");
+
+                } else if (vector[0] > vector[i]) {
+                    //vector.splice(vector[i], "+");
+                    //vector.shift(vector[i]);
+                    //vector.push("+");
+                    vfinal.push("+");
+
+                } else if (vector[0] === vector[i]) {
+                    //vector.splice(vector[i], "=");
+                    //vector.shift(vector[i]);
+                    //vector.push("=");
+                    vfinal.push("=");
+                }
+               
                 document.write(vector[i] + " ");
-                
             }
-            document.write("<br />  "+vector[0] + " ");
+            document.write("<br />");
+
+            for (var l = 0; l < vfinal.length; l++) {
+
+                document.write(vfinal[l] + " ");
+            }
+
+
+            //document.write("<br />  " + vector[0] + " ");
         </script>
 
     </body>
