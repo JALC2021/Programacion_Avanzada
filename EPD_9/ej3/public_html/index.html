@@ -41,7 +41,7 @@ and open the template in the editor.
                 //Creamos las companyas
                 for (var i = 0; i < numeroCompanya; i++) {
 
-                    //generamos numeroCompanya p ara cada compañia
+                    //generamos numeroCompanya para cada compañia
                     var numeroCompanyaes = ["Compañia " + (i + 1), Math.floor((Math.random() * 50) + 1)];
                     for (var j = 0; j < 19; j++) {
                         numeroCompanyaes.push(Math.floor((Math.random() * 50) + 1));
@@ -68,16 +68,19 @@ and open the template in the editor.
                     for (var j = 2; j < 21; j++) {
                         celda = document.createElement("td");
                         img = document.createElement("img");
+                        
                         if (companyas[i][j] > companyas[i][j - 1]) {
                             img.setAttribute("src", "img/up.png");
                             img.setAttribute("alt", "up");
                             img.setAttribute("height", "40");
                             img.setAttribute("width", "40");
+                            
                         } else if (companyas[i][j] < companyas[i][j - 1]) {
                             img.setAttribute("src", "img/down.png");
                             img.setAttribute("alt", "down");
                             img.setAttribute("height", "40");
                             img.setAttribute("width", "40");
+                            
                         } else {
                             img.setAttribute("src", "img/eq.ico");
                             img.setAttribute("alt", "igual");
@@ -85,6 +88,7 @@ and open the template in the editor.
                             img.setAttribute("width", "40");
 
                         }
+                        
                         img.setAttribute("alt", companyas[i][j]);
                         img.setAttribute("id", ids);
                         img.setAttribute("onmouseover", "mouseIn(this)");
@@ -126,6 +130,7 @@ and open the template in the editor.
                     celda.appendChild(text);
                     row.appendChild(celda);
                 }
+                
                 for (var i = 0; i < companyasOrdenadas.length; i++) {
 
                     var row = document.createElement("tr");
