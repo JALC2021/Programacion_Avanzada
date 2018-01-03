@@ -67,6 +67,24 @@ nav{
     background-color: greenyellow;
 }
 
+button{
+    padding: 10px;
+    margin-top: 10px;
+    margin-right: 50px;
+    border-radius: 40%; 
+    border:hidden 1px #000000;
+    
+}
+
+button:hover {
+    background-color: #ccc; 
+}
+
+button.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
 .menu {
     width: 250px;
     border:hidden 1px #000000;
@@ -161,34 +179,30 @@ article{
 
 }
 
-.contendioPrincipal:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-
 .imagenesAside{
 
     display: block;
     padding-bottom: 10px;
     margin: auto;
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
+    /*max-height: 100%;
+    max-width: 100%;*/
     text-align: center;
     border:hidden 1px #000000;
-    -moz-border-radius-topleft: 9px;
-    -moz-border-radius-topright:9px;
-    -moz-border-radius-bottomleft:9px;
-    -moz-border-radius-bottomright:9px;
-    -webkit-border-top-left-radius:9px;
-    -webkit-border-top-right-radius:9px;
-    -webkit-border-bottom-left-radius:9px;
-    -webkit-border-bottom-right-radius:9px;
-    border-top-left-radius:9px;
-    border-top-right-radius:9px;
-    border-bottom-left-radius:9px;
-    border-bottom-right-radius:9px;
+    -moz-border-radius-topleft: 30%;
+    -moz-border-radius-topright:30%;
+    -moz-border-radius-bottomleft:30%;
+    -moz-border-radius-bottomright:30%;
+    -webkit-border-top-left-radius:30%;
+    -webkit-border-top-right-radius:30%;
+    -webkit-border-bottom-left-radius:30%;
+    -webkit-border-bottom-right-radius:30%;
+    border-top-left-radius:30%;
+    border-top-right-radius:30%;
+    border-bottom-left-radius:30%;
+    border-bottom-right-radius:30%;
+    
 }
 .imagenesArticulos{
     
@@ -212,13 +226,20 @@ article{
     border-bottom-right-radius:9px;
 }
 
+.contendioPrincipal:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 .contendioPrincipal{
-    background-image: url("https://s-media-cache-ak0.pinimg.com/originals/e9/63/f9/e963f9339f4cea4412fc5220c64cfa31.jpg");
-    background-repeat: round;
+    background-image: url("http://s1.1zoom.me/big3/963/Texture_Boards_Wooden_478676.jpg");
+    background-repeat: repeat-x;
     padding-top: 12px;
     display: block;
     margin: auto;
     width: 100%;
+    height: 100%;
     text-align: center;
     border:hidden 1px #000000;
     -moz-border-radius-topleft: 9px;
