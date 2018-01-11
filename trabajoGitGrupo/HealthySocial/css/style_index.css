@@ -8,6 +8,20 @@ and open the template in the editor.
     Author     : juanantoniolopezcano
 */
 
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
 * {
     box-sizing: border-box;
 }
@@ -19,6 +33,7 @@ body{
 header {
     background-image: url("https://us.123rf.com/450wm/bimdeedee/bimdeedee1507/bimdeedee150700044/42287432-dibujado-a-mano-sobre-el-estilo-de-vida-saludable-en-el-fondo-blanco.jpg?ver=6");
     padding: 1px;
+    width: 100%;
     text-align: center;
     border-bottom-color: black;
     border:hidden 1px;
@@ -37,7 +52,7 @@ header {
 }
 h1{
     font-family: fantasy;
-    font-size: 4em;
+    font-size: 50px;
     font-weight: bold;
 }
 
@@ -120,6 +135,18 @@ nav{
     background-color: #f9fbe7; 
     font-size: 120%;
     font-weight: bold;
+        -moz-border-radius-topleft: 100%;
+    -moz-border-radius-topright:100%;
+    -moz-border-radius-bottomleft:100%;
+    -moz-border-radius-bottomright:100%;
+    -webkit-border-top-left-radius:100%;
+    -webkit-border-top-right-radius:100%;
+    -webkit-border-bottom-left-radius:100%;
+    -webkit-border-bottom-right-radius:100%;
+    border-top-left-radius:100%;
+    border-top-right-radius:100%;
+    border-bottom-left-radius:100%;
+    border-bottom-right-radius:100%;
 
 }
 
@@ -193,6 +220,7 @@ nav{
     width: 70%;
     float: left;
     margin-top: 12px;
+    margin-bottom: 15px;
     /*padding: 7px; */
     text-align: center;
     border:hidden 1px #000000;
@@ -263,12 +291,9 @@ article{
 .imagenesAside{
 
     display: block;
-    padding-bottom: 10px;
-    margin: auto;
-    width: 120px;
-    height: 120px;
-    /*max-height: 100%;
-    max-width: 100%;*/
+    padding-bottom: 12px;
+    width: 105px;
+    height: 105px;
     text-align: center;
     border:hidden 1px #000000;
     -moz-border-radius-topleft: 30%;
@@ -284,6 +309,9 @@ article{
     border-bottom-left-radius:30%;
     border-bottom-right-radius:30%;
 
+}
+.imagenesAside a{
+    text-decoration: none;
 }
 
 .imagenesArticulos{
@@ -360,14 +388,6 @@ footer {
     border-bottom-right-radius:9px;
 }
 
-/*.tabla{
-    background: #a2dece;
-    border: 1px solid #36752D;
-    margin-left: 1%;
-    margin-top: 1%;
-
-}*/
-
 table{
     padding-left: 5%;
     text-align: left;
@@ -406,13 +426,6 @@ table td{
 /*esto es el formulario de publicar contenido*/
 input[type=text],input[type=time],input[type=url], select, textarea{
 
-    /*width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    resize: vertical;*/
-
     font-size: 100%;
     box-sizing: border-box;
     resize: vertical;
@@ -421,7 +434,7 @@ input[type=text],input[type=time],input[type=url], select, textarea{
     display: block; 
     padding: 12px;
     text-decoration: none; 
-    margin: auto;
+    margin-bottom: 3%;
     width: 100%;
     text-align: justify;
     border:solid 1px  #ffab91 ;
@@ -445,15 +458,7 @@ label {
 }
 
 input[type=submit] {
-    /*width: 30%;
-    background-color: #4CAF50;
-    color: white;
-    margin-top: 4%;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;*/
-
+  
     cursor: pointer;
     background-color: #f9fbe7; 
     margin-top: 4%;

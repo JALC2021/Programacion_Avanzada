@@ -37,7 +37,7 @@
                             <button class="botonesSection" style="font-size:24px"><i class="fa fa-thumbs-o-up"></i></button>
                             <button class="botonesSection" style="font-size:24px">Total <i class="fa fa-heart"></i></button>
                             <button class="botonesSection"  style="font-size:24px"><i class="fa fa-thumbs-o-down"></i></button>
-                            <button class="botonesSection"  style="font-size:24px"><i class="fa fa-align-justify"></i></button>
+                            <button class="botonesSection"><i class="material-icons md-36">mode_comment</i></button>
                     </article>
 
                     <article>

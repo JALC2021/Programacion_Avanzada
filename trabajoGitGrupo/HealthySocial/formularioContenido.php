@@ -171,7 +171,7 @@
                 <meta name="viewport" content="width=device-width, user-scalabe=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
                 <link rel="stylesheet" type="text/css" href="css/style_index.css" />
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
                 <script type="text/javascript">
 
                     function mostrar(num) {
@@ -231,7 +231,8 @@
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label for="duracion">Duraci&oacute;n</label>
+                                   
+                                    <label for="duracion" style="color:red"><i class="material-icons md-36">&#xE192;</i></label>
                                 </div>
                                 <div class="col-75">
                                     <input type="time" id="duracion" name="duracion" required placeholder="Introduzca duración..." />
@@ -240,7 +241,7 @@
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label for="descripcion">Descripci&oacute;n</label>
+                                    <label for="descripcion" style="color:red"><i class="material-icons md-36">&#xE873;</i></label>
                                 </div>
                                 <div class="col-75">
                                     <textarea id="descripcion" name="descripcion" placeholder="Introduce descripción..." style="height:100px"></textarea>
@@ -249,7 +250,7 @@
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label for="foto">Foto</label>
+                                    <label for="foto" style="color:red"><i class="material-icons md-36">add_a_photo</i></label>
                                 </div>
                                 <div class="col-75">
                                     <input type="url" id="foto" name="foto" placeholder="Introduzca url..." />
@@ -298,7 +299,7 @@
 
                             <div class="row">
                                 <div class="col-25">
-                                    <label for="localidad">Localidad</label>
+                                    <label for="localidad" style="color:red"><i class="material-icons md-36">location_on</i></label>
                                 </div>
                                 <div class="col-75">
                                     <input type="text" id="localidad" name="localidad" />
