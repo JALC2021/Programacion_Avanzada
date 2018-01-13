@@ -172,6 +172,7 @@
                 <link rel="stylesheet" type="text/css" href="css/style_index.css" />
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
                 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+                <link rel="shortcut icon" type="image/x-icon" href="images/logoUrl.ico" />
                 <script type="text/javascript">
 
                     function mostrar(num) {
@@ -231,11 +232,10 @@
 
                             <div class="row">
                                 <div class="col-25">
-                                   
                                     <label for="duracion" style="color:red"><i class="material-icons md-36">&#xE192;</i></label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="time" id="duracion" name="duracion" required placeholder="Introduzca duración..." />
+                                    <input type="text" id="duracion" name="duracion" required placeholder="Introduce numero de semanas..." />
                                 </div>
                             </div>
 
@@ -278,7 +278,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <input type="submit" name="publicar" value="Publicar"/>
+                                    <input type="submit" name="alimentacion" value="Publicar"/>
                                 </div>
                             </div>
                     
@@ -302,12 +302,12 @@
                                     <label for="localidad" style="color:red"><i class="material-icons md-36">location_on</i></label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" id="localidad" name="localidad" />
+                                    <input type="text" id="localidad" name="localidad" placeholder="Introduzca localidad..."/>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <input type="submit" name="publicar" value="Publicar"/>
+                                <input type="submit" name="deportes" value="Publicar"/>
                             </div>
                         </div>
                     
@@ -318,12 +318,12 @@
                                     <label for="dosis">Dosis</label>
                                 </div>
                                 <div class="col-75">
-                                    <input type="text" id="dosis" name="dosis" />
+                                    <input type="text" id="dosis" name="dosis" placeholder="Introduzca dosis..." />
                                 </div>
                             </div>
 
                             <div class="row">
-                                <input type="submit" name="publicar" value="Publicar"/>
+                                <input type="submit" name="suplemento" value="Publicar"/>
                             </div>
                         </div>
                         </form>

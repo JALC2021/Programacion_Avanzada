@@ -97,6 +97,7 @@
             <link rel="stylesheet" type="text/css" href="css/style_index.css" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                <link rel="shortcut icon" type="image/x-icon" href="images/logoUrl.ico" />
         </head>
         <body>
 
@@ -109,7 +110,6 @@
 
                 <section class="sectionEstadistica">
                     <div class="container">
-                        <h2>Estadisticas de todos los usuarios</h2>
                         <table class="estadistica">
                             <tr><th>Estad&iacute;stica</th><th>Cantidad</th></tr>
                             <tr><td>N&uacute;mero de likes realizados</td><td><?PHP echo $votosRecibidos; ?></td></tr>

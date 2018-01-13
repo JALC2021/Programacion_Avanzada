@@ -31,7 +31,7 @@ body{
 }
 
 header {
-    background-image: url("https://us.123rf.com/450wm/bimdeedee/bimdeedee1507/bimdeedee150700044/42287432-dibujado-a-mano-sobre-el-estilo-de-vida-saludable-en-el-fondo-blanco.jpg?ver=6");
+    background-image: url("../images/headerFooter.png");
     padding: 1px;
     width: 100%;
     text-align: center;
@@ -52,7 +52,7 @@ header {
 }
 h1{
     font-family: fantasy;
-    font-size: 50px;
+    font-size: 30px;
     font-weight: bold;
 }
 
@@ -84,7 +84,7 @@ nav{
 }
 
 
-#menu, #cerrarSesion{
+#menu, #cerrarSesion, #amigos, #buscar, #personal{
     background-color: #a2dece;
     font-size: 120%;
     font-weight: bold;
@@ -104,7 +104,7 @@ nav{
 
 }
 
-#menu:hover, #cerrarSesion:hover{
+#menu:hover, #cerrarSesion:hover, #amigos:active, #buscar:active, #personal:active{
 
     border:solid 1px  #2196f3;
     -moz-border-radius-topleft: 9px;
@@ -121,7 +121,7 @@ nav{
     border-bottom-right-radius:9px;
 }
 
-#menu:active, #cerrarSesion:active{
+#menu:active, #cerrarSesion:active, #amigos:active, #buscar:active, #personal:active{
     background-color:   #ffa000  ;
     color: white;
 }
@@ -131,11 +131,11 @@ nav{
     margin-top: 10px;
     margin-right: 50px;
     border-radius: 100%;
-    border:solid 1px #000000;
+    border:hidden 1px #000000;
     background-color: #f9fbe7; 
-    font-size: 120%;
+    font-size: 100%;
     font-weight: bold;
-        -moz-border-radius-topleft: 100%;
+    -moz-border-radius-topleft: 100%;
     -moz-border-radius-topright:100%;
     -moz-border-radius-bottomleft:100%;
     -moz-border-radius-bottomright:100%;
@@ -147,7 +147,6 @@ nav{
     border-top-right-radius:100%;
     border-bottom-left-radius:100%;
     border-bottom-right-radius:100%;
-
 }
 
 .botonesSection:hover {
@@ -160,7 +159,6 @@ nav{
 }
 
 .menu {
-
     width: 20%;
     border:hidden 1px #000000;
     -moz-border-radius-topleft: 9px;
@@ -199,8 +197,6 @@ nav{
     border-top-right-radius:9px;
     border-bottom-left-radius:9px;
     border-bottom-right-radius:9px;
-
-
 }
 
 .menu a:hover {
@@ -239,7 +235,6 @@ nav{
 }
 
 .sectionPublicaciones, .sectionEstadistica{
-
     width: 70%;
     /*background-color: #a2dece;*/
     background-image: url("../images/background.jpg");
@@ -266,9 +261,7 @@ nav{
     border-bottom-right-radius:9px;
 }
 
-
 article{
-
     padding: 12px; 
     margin-top: 5px;
     margin-bottom: 5px;
@@ -285,11 +278,9 @@ article{
     border-top-right-radius:9px;
     border-bottom-left-radius:9px;
     border-bottom-right-radius:9px;
-
 }
 
 .imagenesAside{
-
     display: block;
     padding-bottom: 12px;
     width: 105px;
@@ -308,14 +299,12 @@ article{
     border-top-right-radius:30%;
     border-bottom-left-radius:30%;
     border-bottom-right-radius:30%;
-
 }
 .imagenesAside a{
     text-decoration: none;
 }
 
 .imagenesArticulos{
-
     display: block;
     margin: auto;
     width: auto;
@@ -458,7 +447,7 @@ label {
 }
 
 input[type=submit] {
-  
+
     cursor: pointer;
     background-color: #f9fbe7; 
     margin-top: 4%;
