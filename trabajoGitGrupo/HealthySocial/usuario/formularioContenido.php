@@ -356,7 +356,7 @@ if (isset($_SESSION['usuario'])) {
                                         <select id="tipoDeporte" name="tipoDeporte" >
                                             <option value="futbol">F&uacute;tbol</option>
                                             <option value="tenis">Tenis</option>
-                                            <option value="paddel">Paddel</option>
+                                            <option value="paddel">Padel</option>
                                             <option value="surf">Surf</option>
                                             <option value="baloncesto">Baloncesto&oacute;tica</option>
                                             <option value="running">Runnig</option>
