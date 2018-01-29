@@ -223,7 +223,7 @@ if (isset($_SESSION['usuario'])) {
                                         die("Error al ejecutar la consulta: " . mysqli_error($con));
                                     }
                                     $usuario = mysqli_fetch_array($rowUser);
-                                    ?><p><b><?PHP echo $usuario['usuario']; ?>: </b><?PHP echo $comentario['texto'] ?> </p><?PHP
+                                    ?><p id="mensajes"><b><?PHP echo $usuario['usuario']; ?>: </b><?PHP echo $comentario['texto'] ?> </p><?PHP
                                 }
                                 ?></details><?php
                             }
