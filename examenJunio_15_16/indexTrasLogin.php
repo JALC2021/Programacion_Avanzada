@@ -4,6 +4,19 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<?php 
+session_start();
+
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header('location:index.php');
+}
+
+if (isset($_POST['create'])) {
+    header('location:nuevo.php');
+}
+
+?>
 <html>
     <head>
         <title>Cien anuncios</title>
@@ -35,7 +48,7 @@ and open the template in the editor.
             </div>
         </div>
         <div style="float:left; width: 10em;">
-            Bienvenido <strong>alice</strong>
+            Bienvenido <strong><?php echo $_SESSION['nombreUsuario']?></strong>
             <form action="#" method="post">
                 <button type="submit" name="create">Nuevo anuncio</button><br>
                 <button type="submit" name="logout">Salir</button>

@@ -52,8 +52,13 @@ if (mysqli_num_rows($resQuery) < 1) {
                             <?php } ?>
                         </div>
                         <p style="max-width: 90%">
-                            <?php echo($fila['texto']); ?>
-                        </p>
+
+                            <?php
+                            if (isset($fila['texto'])) {
+                                echo($fila['texto']);
+                            } else {
+                                ?><p>!!No tiene texto!!</p><?php }
+                            ?>
 
                     </div>
 
@@ -63,7 +68,6 @@ if (mysqli_num_rows($resQuery) < 1) {
 
             if (isset($_POST['login'])) {
 
-
                 $usuario = trim(filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING));
                 $password = mysqli_real_escape_string($conexion, $_POST['password']);
                 $passwordHash = md5(trim(filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING)));
@@ -71,11 +75,14 @@ if (mysqli_num_rows($resQuery) < 1) {
                 $queryConpruebaUsuario = "SELECT * FROM `users` WHERE username = '$usuario' and password = '$passwordHash'";
                 $resqueryConpruebaUsuario = mysqli_query($conexion, $queryConpruebaUsuario);
                 if (mysqli_num_rows($resqueryConpruebaUsuario) < 1) {
-                    echo("error en la consulta");
+                    echo("usuario o contraseña incorrecto");
                 } else {
                     $filaCompruebaUSuario = mysqli_fetch_array($resqueryConpruebaUsuario);
-                    $_SESSION['nombreUsuario'] = $_POST['usuario'];
+                    //creo ariable de session
+                    $_SESSION['nombreUsuario'] = $usuario;
                     header("location:indexTrasLogin.php");
+                    //creo la cookie
+                    setcookie('nombreUsuario', $usuario, time() + (3600 * 24 * 30));
                 }
             }
 
@@ -83,11 +90,14 @@ if (mysqli_num_rows($resQuery) < 1) {
             ?>
             <div style="float:left; width: 10em;">
                 <form action="#" method="post">
-                    Usuario: <input type="text" name="username" value="alice">
+                    <?php if (isset($_COOKIE['nombreUsuario'])) { ?>
+                        Usuario: <input type="text" name="username" value="<?php echo $_COOKIE['nombreUsuario'] ?>">
+                    <?php } else { ?>
+                        Usuario: <input type="text" name="username" value="">
+                    <?php } ?>
                     Contrase&ntilde;a: <input type="password" name="password">
                     <button type="submit" name="login">Login</button>
                 </form>
             </div>
-
     </body>
 </html>
