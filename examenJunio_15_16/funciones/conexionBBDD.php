@@ -17,3 +17,14 @@ if (!$BBDD_selected) {
 
 ?>
 
+     <?php
+        if ($errores!=0) {
+            if (isset($errores)) {
+                echo "<ul style=color:red>";
+                foreach ($errores as $value) {
+                    echo "<li>$value</li>";
+                }
+                echo "</ul>";
+            }
+        }
+        ?>

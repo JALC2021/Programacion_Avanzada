@@ -35,34 +35,38 @@ if (mysqli_num_rows($resQuery) < 1) {
                 <h1>Cien anuncios - Anuncios por palabras</h1>
             </div>
             <?php
-            while ($fila = mysqli_fetch_array($resQuery)) {
-                ?>
-                <div style="float: left; width: 30em;">
-                    <div>
-                        <h2><?php echo($fila['titulo']); ?></h2>
+            if (mysqli_num_rows($resQuery) == 0) {
+                ?><p>!!El usuario no tiene contenido!!</p><?php
+            } else {
+                while ($fila = mysqli_fetch_array($resQuery)) {
+                    ?>
+                    <div style="float: left; width: 30em;">
                         <div>
-                            Anuncio n&uacute;mero: <?php echo($fila['id']); ?> - <?php echo($fila['fechaPublicacion']); ?>
+                            <h2><?php echo($fila['titulo']); ?></h2>
+                            <div>
+                                Anuncio n&uacute;mero: <?php echo($fila['id']); ?> - <?php echo($fila['fechaPublicacion']); ?>
+                            </div>
+                            <div>
+                                <?php if (($fila['imagen']) == NULL) {
+                                    ?><p>!!No tiene foto!!</p><?php
+                                } else {
+                                    ?>          
+                                    <img src="images/<?php echo($fila['imagen']); ?>" style="max-width: 90%">
+                                <?php } ?>
+                            </div>
+                            <p style="max-width: 90%">
+
+                                <?php
+                                if (isset($fila['texto'])) {
+                                    echo($fila['texto']);
+                                } else {
+                                    ?><p>!!No tiene texto!!</p><?php }
+                                ?>
+
                         </div>
-                        <div>
-                            <?php if (($fila['imagen']) == NULL) {
-                                ?><p>!!No tiene foto!!</p><?php
-                            } else {
-                                ?>          
-                                <img src="images/<?php echo($fila['imagen']); ?>" style="max-width: 90%">
-                            <?php } ?>
-                        </div>
-                        <p style="max-width: 90%">
 
-                            <?php
-                            if (isset($fila['texto'])) {
-                                echo($fila['texto']);
-                            } else {
-                                ?><p>!!No tiene texto!!</p><?php }
-                            ?>
-
-                    </div>
-
-                    <?php
+                        <?php
+                    }
                 }
             }
 
@@ -91,7 +95,7 @@ if (mysqli_num_rows($resQuery) < 1) {
             <div style="float:left; width: 10em;">
                 <form action="#" method="post">
                     <?php if (isset($_COOKIE['nombreUsuario'])) { ?>
-                        Usuario: <input type="text" name="username" value="<?php echo $_COOKIE['nombreUsuario'] ?>">
+                        Usuario: <input type="text" name="username" value="<?php echo $_COOKIE['nombreUsuario']; ?>">
                     <?php } else { ?>
                         Usuario: <input type="text" name="username" value="">
                     <?php } ?>
