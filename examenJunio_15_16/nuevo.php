@@ -37,26 +37,51 @@ if (isset($_POST['create'])) {
                 $texto = $_POST['bodyText'];
 
                 $nombreFoto = $_FILES['image']['name'];
-                move_uploaded_file($_FILES['image']['tmp_name'], "images/" . $nombreFoto);
 
-                $usuario = $_SESSION['nombreUsuario'];
-
-                $queryInsert = "INSERT INTO anuncios (titulo, texto, imagen, usuario, fechaPublicacion) VALUES ('$titulo', '$texto', '$nombreFoto', '$usuario', now())";
-                $resQueryInsert = mysqli_query($conexion, $queryInsert);
-                if ($resQueryInsert == NULL) {
-                    echo "error en la subida";
+                //comprueba que las nombres de las fotos no esten dupliados
+                $numeroImagenesAlmacenadas = count(glob('images/' . $nombreFoto, GLOB_BRACE));
+                if ($numeroImagenesAlmacenadas > 0) {
+                    $errores[] = "cambie el nombre de la imagen";
                 } else {
-                    header("location:indexTrasLogin.php");
+
+
+                    move_uploaded_file($_FILES['image']['tmp_name'], 'images/' . $nombreFoto);
+
+                    $usuario = $_SESSION['nombreUsuario'];
+
+                    $queryInsert = "INSERT INTO anuncios (titulo, texto, imagen, usuario) VALUES ('$titulo', '$texto', '$nombreFoto', '$usuario')";
+                    $resQueryInsert = mysqli_query($conexion, $queryInsert);
+                    if (!$resQueryInsert) {
+                        echo "error en la subida";
+                    } else {
+                        header("location:indexTrasLogin.php");
+                    }
                 }
             } else {
-//                $errores[] = "Los formatos permitidos son .jpg/.png /.gif";
-                echo"Los formatos permitidos son .jpg/.png /.gif";
-//                $nombreFoto = NULL;
+                $errores[] = "Los formatos permitidos son .jpg/.png /.gif";
             }
         }
     }
+// no funciona bien no se por que.
+//    if (!isset($_FILES['image'])) {
+//        
+//
+//        $tituloSinImagen = $_POST['title'];
+//        $textoSinImagen = $_POST['bodyText'];
+//        $nombreFotoSinFoto = NULL;
+//        $usuarioSinImagen = $_SESSION['nombreUsuario'];
+//
+//        $queryInsertSinImagen = "INSERT INTO anuncios (titulo, texto, imagen, usuario) VALUES ('$tituloSinImagen', '$textoSinImagen', '$nombreFotoSinFoto', '$usuarioSinImagen')";
+//        $resQueryInsertSinImagen = mysqli_query($conexion, $queryInsertSinImagen);
+//        if ($resQueryInsertSinImagen == NULL) {
+//            echo "error en la subida";
+//        } else {
+//            header("location:indexTrasLogin.php");
+//        }
+//    }
+
+    mysqli_close($conexion);
 }
-mysqli_close($conexion);
 ?>
 
 
@@ -66,7 +91,17 @@ mysqli_close($conexion);
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-
+        <?php
+        if (!isset($_POST['create']) or isset($errores)) {
+            if (isset($errores)) {
+                echo "<ul style=color:red>";
+                foreach ($errores as $value) {
+                    echo "<li>$value</li>";
+                }
+                echo "</ul>";
+            }
+        }
+        ?>
 
         <h1>Nuevo anuncio</h1>
         <div>

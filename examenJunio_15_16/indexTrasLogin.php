@@ -33,6 +33,8 @@ if (isset($_POST['delete'])) {
     $idImagen = $_POST['id'];
     $queryDelete = "DELETE FROM `anuncios` WHERE id ='$idImagen'";
     $resQureyDelete = mysqli_query($conexion, $queryDelete);
+    $imagenDelete = $_POST['imagen'];
+    unlink('images/' . $imagenDelete);
     header("location:indexTrasLogin.php");
 }
 ?>
@@ -60,6 +62,7 @@ if (isset($_POST['delete'])) {
                         <div>
                             <form action="#" method="post">
                                 <input type="hidden" name="id" value="<?php echo($fila['id']); ?>">
+                                <input type="hidden" name="imagen" value="<?php echo($fila['imagen']); ?>">
                                 <button type="submit" name="delete">Borrar</button>
                             </form>
                         </div>
@@ -84,6 +87,7 @@ if (isset($_POST['delete'])) {
                     <?php
                 }
             }
+            //mysqli_free_result($resQueryUsuarioLogado);
             mysqli_close($conexion);
             ?>
 

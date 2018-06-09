@@ -68,6 +68,7 @@ if (mysqli_num_rows($resQuery) < 1) {
                         <?php
                     }
                 }
+                //mysqli_free_result($resQuery);
             }
 
             if (isset($_POST['login'])) {
@@ -89,7 +90,7 @@ if (mysqli_num_rows($resQuery) < 1) {
                     setcookie('nombreUsuario', $usuario, time() + (3600 * 24 * 30));
                 }
             }
-
+            //mysqli_free_result($resqueryConpruebaUsuario);
             mysqli_close($conexion);
             ?>
             <div style="float:left; width: 10em;">
