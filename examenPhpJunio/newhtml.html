@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<?php
+$conexion = mysqli_connect("localhost", "root", "");
+if (!$conexion) {
+    die('error en la conexion al servidor');
+}
+$selectBBDD = mysqli_select_db($conexion, "tiendaropa");
+if (!$selectBBDD) {
+    die('error en la conexion a la bbdd');
+}
+//recojo los datos de usuario y password
+$usuario = mysqli_real_escape_string($conexion, $_POST['usuario']);
+$contrasenya = mysqli_real_escape_string($conexion, $_POST['password']);
+//convierto la contraseña introducida a hash para poder comprobar si son iguales no.
+$pwd = password_hash($contrasenya);
+//realizo la consulta para comprobar si existe el usuario
+$queryLogin = "SELECT nombre, id FROM `usuarios` WHERE `nombre` LIKE '$usuario' AND `clave` LIKE '$pwd'";
+$resQueryLogin = mysqli_query($conexion, $queryLogin);
+
+if (!$resQueryLogin) {
+    die('error en la consulta' . mysqli_error($conexion));
+} else {
+    if (mysqli_num_rows($resQueryLogin) < 1) {
+
+        echo'usuario o contraseña no existen';
+    } else {
+
+        $fila = mysqli_fetch_array($resQueryLogin);
+        setcookie('nombreUsuario', $fila['nombre'], time() + (3600 * 24 * 30));
+        $_SESSION['nombreUsuario'] = $fila['nombre'];
+        header("location:listado_productos.php");
+    }
+}
+?>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PA - Examen PHP (Diciembre, 2017)</title>
+    </head>
+    <body>
+        <h1>Tienda de ropa</h1>
+        <h2>Login</h2>
+        <form action="#" method="POST">
+            Usuario: <input type="text" name="usuario" value="" /> <br>
+            Password: <input type="password" name="password" /> <br><br>
+
+            <input type="submit" name="btnLogin" value="Login"/>
+            <input type="reset" name="btnCancelar" value="Cancelar"/> <br><br>                                
+        </form>
+        <form action="registro.php" method="POST">
+            <input type="submit" name="btnRegistro" value="Registro"/>                                
+        </form>
+    </body>
+</html> 
+$2y$10$udNMulekORp9tx/uDtZx1uC6dIvcTeiGnjgqNy8qCQ5gR.psVWFYW
+
+$2y$10$9fdd.NvjE9zuxTSFdX2a2uGu5xRMzRCjsnoYlKRnL7UDVMNk89q06
